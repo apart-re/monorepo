@@ -1,0 +1,17 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@3.0.2/schema.json",
+  "changelog": "@changesets/cli/changelog",
+  "commit": true,
+  "fixed": [],
+  "linked": [],
+  "access": "restricted",
+  "baseBranch": "main",
+  "updateInternalDependencies": "patch",
+  "ignore": [
+    "@apart-re/admin",
+    "@apart-re/api",
+    "@apart-re/blog",
+    "@apart-re/storefront",
+    "@apart-re/notifications"
+  ]
+}

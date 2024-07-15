@@ -1,12 +1,11 @@
-import { log } from "@repo/logger";
-import { CounterButton, Link } from "@repo/ui";
+import { CounterButton, Link } from "@apart-re/ui";
 
 export const metadata = {
   title: "Store | Kitchen Sink",
 };
 
 export default function Store(): JSX.Element {
-  log("Hey! This is the Store page.");
+  console.log("Hey! This is the Store page.");
 
   return (
     <div className="container">

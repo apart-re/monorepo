@@ -1,3 +1,5 @@
 packages:
+  - "services/*"
+  - "clients/*"
   - "apps/*"
   - "packages/*"

@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles.css";
-import { CounterButton, Link } from "@repo/ui";
+import { CounterButton, Link } from "@apart-re/ui";
 
 function App(): JSX.Element {
   return (
