@@ -36,11 +36,11 @@
     "lint:fix": "bun biome lint --write --unsafe . && bun run lint:case",
     "lint:turbo": "turbo run lint",
     "release:packages": "turbo build --filter=./packages/* && changeset publish",
-    "test": "vitest run --config ./configs/vitest.config.ts --coverage",
+    "test:turbo": "turbo run test --filter=./packages/* --filter=./services/*",
     "test:bun": "bun test --preload ./configs/setup.ts",
     "test:vitest": "vitest run --config ./configs/vitest.config.ts",
     "test:watch": "vitest --config ./configs/vitest.config.ts",
-    "typecheck": "turbo run typecheck --continue --filter=./packages/* --filter=./apps/* --filter=./clients/* --filter=./services/*",
+    "typecheck": "turbo run typecheck --filter=./packages/* --filter=./services/*",
     "version-packages": "changeset version",
     "upgrade": "npx taze -r -w --exclude pnpm"
   },

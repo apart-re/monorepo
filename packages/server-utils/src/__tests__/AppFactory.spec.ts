@@ -22,27 +22,27 @@ describe('AppFactory', () => {
 
     it('should initialize express middlewares with default options', () => {
       const app = new MockAppFactory(defaultConfig)
-      const infoSpy = jest.spyOn(mockLogger, 'info')
+      const infoSpy = vi.spyOn(mockLogger, 'info')
 
       //@ts-expect-error
       app.initializeExpressMiddlewares({})
 
       expect(infoSpy.mock.calls.length).toBe(2)
-      expect(infoSpy.mock.calls[0][0]).toBe('Loading default middlewares...')
-      expect(infoSpy.mock.calls[1][0]).toBe('Default middlewares loaded')
+      expect(infoSpy.mock.calls[0]?.[0]).toBe('Loading default middlewares...')
+      expect(infoSpy.mock.calls[1]?.[0]).toBe('Default middlewares loaded')
 
       infoSpy.mockRestore()
     })
     it('should initialize express middlewares with cors options', () => {
       const app = new MockAppFactory(defaultConfig)
-      const infoSpy = jest.spyOn(mockLogger, 'info')
+      const infoSpy = vi.spyOn(mockLogger, 'info')
 
       //@ts-expect-error
       app.initializeExpressMiddlewares({ cors: { methods: 'GET' } })
 
       expect(infoSpy.mock.calls.length).toBe(2)
-      expect(infoSpy.mock.calls[0][0]).toBe('Loading default middlewares...')
-      expect(infoSpy.mock.calls[1][0]).toBe('Default middlewares loaded')
+      expect(infoSpy.mock.calls[0]?.[0]).toBe('Loading default middlewares...')
+      expect(infoSpy.mock.calls[1]?.[0]).toBe('Default middlewares loaded')
 
       infoSpy.mockRestore()
     })
@@ -72,13 +72,13 @@ describe('AppFactory', () => {
           routes: [{ path: '/foo', router: Router().post('/') }],
         },
       ]
-      const infoSpy = jest.spyOn(mockLogger, 'info')
+      const infoSpy = vi.spyOn(mockLogger, 'info')
       const app = new MockAppFactory({ ...defaultConfig, routes })
 
       const routers = _.map(app.getServer()._router.stack ?? [], 'name').filter((name) => name === 'router')
       expect(routers.length).toBe(routes.length)
-      expect(infoSpy.mock.calls[2][0]).toBe('Loading routes...')
-      expect(infoSpy.mock.calls[3][0]).toBe('Routes loaded')
+      expect(infoSpy.mock.calls[2]?.[0]).toBe('Loading routes...')
+      expect(infoSpy.mock.calls[3]?.[0]).toBe('Routes loaded')
     })
   })
 
@@ -89,21 +89,21 @@ describe('AppFactory', () => {
 
     it('should initialize connections', async () => {
       const app = new MockAppFactory(defaultConfig)
-      const infoSpy = jest.spyOn(mockLogger, 'info')
+      const infoSpy = vi.spyOn(mockLogger, 'info')
       await app.initializeConnections(new Promise((resolve) => resolve()))
 
-      expect(infoSpy.mock.calls[0][0]).toBe('Connections initialized')
+      expect(infoSpy.mock.calls[0]?.[0]).toBe('Connections initialized')
     })
 
     it('should throw', async () => {
       const app = new MockAppFactory(defaultConfig)
-      const errorSpy = jest.spyOn(mockLogger, 'error')
+      const errorSpy = vi.spyOn(mockLogger, 'error')
       const errorMessage = 'connections failed'
       try {
         await app.initializeConnections(new Promise((_, reject) => reject(new Error(errorMessage))))
       } catch (err) {
         expect((err as Error).message).toBe(errorMessage)
-        expect(errorSpy.mock.calls[0][0]).toBe('An Error has occurred during connection init')
+        expect(errorSpy.mock.calls[0]?.[0]).toBe('An Error has occurred during connection init')
       }
     })
   })
@@ -115,11 +115,11 @@ describe('AppFactory', () => {
 
     it('should initialize connections', () => {
       const app = new MockAppFactory(defaultConfig)
-      const listenSpy = jest.spyOn(app.getServer(), 'listen')
+      const listenSpy = vi.spyOn(app.getServer(), 'listen')
       app.listen()
 
       expect(listenSpy).toHaveBeenCalledTimes(1)
-      expect(listenSpy.mock.calls[0][0]).toBe(3000)
+      expect(listenSpy.mock.calls[0]?.[0]).toBe(3000)
     })
   })
 })
