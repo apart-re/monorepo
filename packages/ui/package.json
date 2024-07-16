@@ -30,10 +30,14 @@
   "private": false,
   "scripts": {
     "build": "tsup",
-    "dev": "tsup --watch",
-    "lint": "eslint src/",
-    "typecheck": "tsc --noEmit",
-    "test": "jest"
+    "clean": "npx rimraf ./dist",
+    "lint": "bun biome lint .",
+    "lint:fix": "bun biome lint --apply-unsafe .",
+    "release": "pnpm publish --no-git-check",
+    "release:canary": "bash ../../.github/canary.sh && node ../../scripts/build.js canary && pnpm publish --no-git-check",
+    "start": "tsup --watch",
+    "test": "vitest --passWithNoTests",
+    "typecheck": "tsc -p ./tsconfig.json --noEmit --emitDeclarationOnly false"
   },
   "jest": {
     "preset": "@apart-re/jest-presets/node"

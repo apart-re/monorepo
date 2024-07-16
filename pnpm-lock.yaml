@@ -190,7 +190,7 @@ importers:
         version: 6.21.0(eslint@8.57.0)(typescript@5.5.3)
       autoprefixer:
         specifier: ^10.4.19
-        version: 10.4.19(postcss@8.4.38)
+        version: 10.4.19(postcss@8.4.39)
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -366,7 +366,7 @@ importers:
     dependencies:
       ts-jest:
         specifier: ^29.2.2
-        version: 29.2.2(@babel/core@7.24.0)(jest@29.7.0)(typescript@5.5.3)
+        version: 29.2.2(@babel/core@7.24.9)(jest@29.7.0)(typescript@5.5.3)
     devDependencies:
       jest-environment-jsdom:
         specifier: ^29.7.0
@@ -484,9 +484,6 @@ importers:
       '@types/hpp':
         specifier: ^0.2.6
         version: 0.2.6
-      '@types/jest':
-        specifier: ^29.5.12
-        version: 29.5.12
       '@types/lodash':
         specifier: ^4.17.7
         version: 4.17.7
@@ -496,9 +493,6 @@ importers:
       '@types/node':
         specifier: ^20.14.10
         version: 20.14.10
-      jest:
-        specifier: ^29.7.0
-        version: 29.7.0(@types/node@20.14.10)
       tsup:
         specifier: ^8.1.0
         version: 8.1.0(typescript@5.5.3)
@@ -581,9 +575,6 @@ importers:
       '@types/supertest':
         specifier: ^6.0.2
         version: 6.0.2
-      jest:
-        specifier: ^29.7.0
-        version: 29.7.0(@types/node@20.14.10)
       supertest:
         specifier: ^6.3.4
         version: 6.3.4
@@ -757,7 +748,6 @@ packages:
   /@babel/compat-data@7.24.9:
     resolution: {integrity: sha512-e701mcfApCJqMMueQI0Fb68Amflj83+dvAvHawoBpAz+GDjCIyGHzNwnefjsWJ3xiYAqqiQFoWbspGYBdb2/ng==}
     engines: {node: '>=6.9.0'}
-    dev: true
 
   /@babel/core@7.24.0:
     resolution: {integrity: sha512-fQfkg0Gjkza3nf0c7/w6Xf34BW4YvzNfACRLmmb7XRLa6XHdR+K9AlJlxneFfWYf6uhOzuzZVTjF/8KfndZANw==}
@@ -802,7 +792,6 @@ packages:
       semver: 6.3.1
     transitivePeerDependencies:
       - supports-color
-    dev: true
 
   /@babel/eslint-parser@7.23.3(@babel/core@7.24.0)(eslint@8.57.0):
     resolution: {integrity: sha512-9bTuNlyx7oSstodm1cR1bECj4fkiknsDa1YniISkJemMY3DGhJNYBECbe6QD/q54mp2J8VO66jW3/7uP//iFCw==}
@@ -861,7 +850,6 @@ packages:
       browserslist: 4.23.1
       lru-cache: 5.1.1
       semver: 6.3.1
-    dev: true
 
   /@babel/helper-create-class-features-plugin@7.22.15(@babel/core@7.24.0):
     resolution: {integrity: sha512-jKkwA59IXcvSaiK2UN45kKwSC9o+KuoXsBDvHvU/7BecYIp8GQ2UwrVvFgJASUT+hBnwJx6MhvMCuMzwZZ7jlg==}
@@ -943,7 +931,6 @@ packages:
       '@babel/helper-validator-identifier': 7.24.7
     transitivePeerDependencies:
       - supports-color
-    dev: true
 
   /@babel/helper-optimise-call-expression@7.22.5:
     resolution: {integrity: sha512-HBwaojN0xFRx4yIvpwGqxiV2tUfl7401jlok564NgB9EHS1y6QT17FmKWm4ztqjeVdXLuC4fSvHc5ePpQjoTbw==}
@@ -980,7 +967,6 @@ packages:
       '@babel/types': 7.24.9
     transitivePeerDependencies:
       - supports-color
-    dev: true
 
   /@babel/helper-skip-transparent-expression-wrappers@7.22.5:
     resolution: {integrity: sha512-tK14r66JZKiC43p8Ki33yLBVJKlQDFoA8GYN67lWCDCqoL6EMMSuM9b+Iff2jHaM/RRFYl7K+iiru7hbRqNx8Q==}
@@ -1013,7 +999,6 @@ packages:
   /@babel/helper-validator-option@7.24.8:
     resolution: {integrity: sha512-xb8t9tD1MHLungh/AIoWYN+gVHaB9kwlu8gffXGSt3FFEIT7RjS+xWbc2vUD1UTZdIpKj/ab3rdqJ7ufngyi2Q==}
     engines: {node: '>=6.9.0'}
-    dev: true
 
   /@babel/helpers@7.24.0:
     resolution: {integrity: sha512-ulDZdc0Aj5uLc5nETsa7EPx2L7rM0YJM8r7ck7U73AXi7qOV44IHHRAYZHY6iU1rr3C5N4NtTmMRUJP6kwCWeA==}
@@ -1031,7 +1016,6 @@ packages:
     dependencies:
       '@babel/template': 7.24.7
       '@babel/types': 7.24.9
-    dev: true
 
   /@babel/highlight@7.24.7:
     resolution: {integrity: sha512-EStJpq4OuY8xYfhGVXngigBJRWxftKX9ksiGDnmlY3o7B/V7KIAc9X4oiK87uPJSc/vs5L869bem5fhZa8caZw==}
@@ -4502,7 +4486,7 @@ packages:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
     dev: true
 
-  /autoprefixer@10.4.19(postcss@8.4.38):
+  /autoprefixer@10.4.19(postcss@8.4.39):
     resolution: {integrity: sha512-BaENR2+zBZ8xXhM4pUaKUxlVdxZ0EZhjvbopwnXmxRUfqDmwSpC2lAi/QXvx7NRdPCo1WKEcEF6mV64si1z4Ew==}
     engines: {node: ^10 || ^12 || >=14}
     hasBin: true
@@ -4514,7 +4498,7 @@ packages:
       fraction.js: 4.3.7
       normalize-range: 0.1.2
       picocolors: 1.0.1
-      postcss: 8.4.38
+      postcss: 8.4.39
       postcss-value-parser: 4.2.0
     dev: true
 
@@ -4712,7 +4696,6 @@ packages:
       electron-to-chromium: 1.4.811
       node-releases: 2.0.14
       update-browserslist-db: 1.0.16(browserslist@4.23.1)
-    dev: true
 
   /bs-logger@0.2.6:
     resolution: {integrity: sha512-pd8DCoxmbgc7hyPKOvxtqNcjYoOsABPQdcCUjGp3d42VR2CX1ORhk2A87oqqu5R1kk+76nsxZupkmyd+MVtCog==}
@@ -5528,7 +5511,6 @@ packages:
 
   /electron-to-chromium@1.4.811:
     resolution: {integrity: sha512-CDyzcJ5XW78SHzsIOdn27z8J4ist8eaFLhdto2hSMSJQgsiwvbv2fbizcKUICryw1Wii1TI/FEkvzvJsR3awrA==}
-    dev: true
 
   /emittery@0.13.1:
     resolution: {integrity: sha512-DeWwawk6r5yR9jFgnDKYt4sLS0LmHJJi3ZOnb5/JdbYwj3nW+FxQnHIjhBKz8YLC7oRNPVM9NQ47I3CVx34eqQ==}
@@ -11699,7 +11681,7 @@ packages:
     resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}
     dev: true
 
-  /ts-jest@29.2.2(@babel/core@7.24.0)(jest@29.7.0)(typescript@5.5.3):
+  /ts-jest@29.2.2(@babel/core@7.24.9)(jest@29.7.0)(typescript@5.5.3):
     resolution: {integrity: sha512-sSW7OooaKT34AAngP6k1VS669a0HdLxkQZnlC7T76sckGCokXFnvJ3yRlQZGRTAoV5K19HfSgCiSwWOSIfcYlg==}
     engines: {node: ^14.15.0 || ^16.10.0 || ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -11723,7 +11705,7 @@ packages:
       esbuild:
         optional: true
     dependencies:
-      '@babel/core': 7.24.0
+      '@babel/core': 7.24.9
       bs-logger: 0.2.6
       ejs: 3.1.10
       fast-json-stable-stringify: 2.1.0
@@ -12203,7 +12185,6 @@ packages:
       browserslist: 4.23.1
       escalade: 3.1.2
       picocolors: 1.0.1
-    dev: true
 
   /uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
