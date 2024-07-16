@@ -1,5 +1,14 @@
 # @apart-re/notify
 
+## 1.0.5
+
+### Patch Changes
+
+- [`90f0fb1`](https://github.com/apart-re/monorepo/commit/90f0fb1abf578014bd28209d54c1fe353e5c558d) Thanks [@otedesco](https://github.com/otedesco)! - refactoring
+
+- Updated dependencies [[`90f0fb1`](https://github.com/apart-re/monorepo/commit/90f0fb1abf578014bd28209d54c1fe353e5c558d)]:
+  - @apart-re/commons@1.0.5
+
 ## 1.0.4
 
 ### Patch Changes
