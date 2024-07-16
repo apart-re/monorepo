@@ -1,5 +1,11 @@
 # @apart-re/server-utils
 
+## 1.1.4
+
+### Patch Changes
+
+- [`f7b2a38`](https://github.com/apart-re/monorepo/commit/f7b2a3888cdc0f445acceb9e85cc57ca6535a28e) Thanks [@otedesco](https://github.com/otedesco)! - refactoring
+
 ## 1.1.3
 
 ### Patch Changes
