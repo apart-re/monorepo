@@ -1,5 +1,30 @@
 {
+  "name": "@apart-re/monorepo",
+  "version": "0.0.0",
   "private": true,
+  "description": "Monorepo Apart Real Estate",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/apart-re/monorepo.git"
+  },
+  "license": "MIT",
+  "author": "Oswaldo Tedesco <oswaldo.tedesco@gmail.com>",
+  "type": "module",
+  "packageManager": "pnpm@8.15.6",
+  "engines": {
+    "node": ">=18"
+  },
+  "workspaces": {
+    "packages": [
+      "apps/*",
+      "clients/*",
+      "services/*",
+      "packages/*",
+      "packages/configs/config-eslint/*",
+      "packages/configs/config-typescript/*",
+      "packages/configs/jest-presets/*"
+    ]
+  },
   "scripts": {
     "build": "turbo run build",
     "clean": "turbo run clean",
@@ -16,10 +41,5 @@
     "@changesets/cli": "^2.27.7",
     "prettier": "^3.2.5",
     "turbo": "^2.0.6"
-  },
-  "packageManager": "pnpm@8.15.6",
-  "engines": {
-    "node": ">=18"
-  },
-  "name": "apart-re"
+  }
 }
