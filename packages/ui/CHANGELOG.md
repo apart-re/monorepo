@@ -1,5 +1,13 @@
 # @apart-re/ui
 
+## 1.0.6
+
+### Patch Changes
+
+- [#13](https://github.com/apart-re/monorepo/pull/13) [`507d3f7`](https://github.com/apart-re/monorepo/commit/507d3f7be58a8fea1aba593cb898102fb2a8d62b) Thanks [@otedesco](https://github.com/otedesco)! - fix pipeline
+
+- [`5768844`](https://github.com/apart-re/monorepo/commit/57688446a38b762785f2588255a2fe97391e9b8e) Thanks [@otedesco](https://github.com/otedesco)! - fix tests
+
 ## 1.0.5
 
 ### Patch Changes
