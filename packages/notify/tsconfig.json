@@ -1,20 +1,7 @@
 {
-  "extends": "@apart-re/typescript-config/base.json",
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "lib": [
-      "ES2015"
-    ],
-    "outDir": "./dist",
-    "types": [
-      "jest",
-      "node"
-    ],
+    "types": ["vitest/globals", "bun-types", "../configs/config-typescript/reset.d.ts"]
   },
-  "include": [
-    "."
-  ],
-  "exclude": [
-    "node_modules",
-    "dist"
-  ],
+  "include": ["src/**/*", "./package.json", "./tsup.config.ts", "./vitest.config.ts"]
 }

@@ -1,2 +1,2 @@
-export type { default as ConfigOptions } from "./ConfigOptions";
-export type { default as Route } from "./Route";
+export type { default as ConfigOptions } from './ConfigOptions'
+export type { default as Route } from './Route'

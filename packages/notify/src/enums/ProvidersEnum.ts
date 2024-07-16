@@ -1,4 +1,4 @@
 export enum ProvidersEnum {
-  serviceBus = "serviceBus",
-  kafka = "kafka",
+  serviceBus = 'serviceBus',
+  kafka = 'kafka',
 }

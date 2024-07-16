@@ -1,9 +1,14 @@
 {
-  "name": "@apart-re/typescript-config",
+  "name": "@apart-re/config-typescript",
   "version": "0.0.0",
   "private": true,
-  "license": "MIT",
-  "publishConfig": {
-    "access": "public"
+  "types": "./reset.d.ts",
+  "files": [
+    "reset.d.ts",
+    "base.json",
+    "bundler.json"
+  ],
+  "devDependencies": {
+    "typescript": "^5.5.3"
   }
 }

@@ -1,44 +1,42 @@
-import { config } from "dotenv";
+import { config } from 'dotenv'
 
-config({ path: `.env.${process.env.NODE_ENV || "development"}.local` });
-const environment = process.env;
+config({ path: `.env.${process.env.NODE_ENV || 'development'}.local` })
+const environment = process.env
 
-export const MQQT_PROVIDER = environment.MQQT_PROVIDER;
-export const MQTT_HOST_MICROSERVICES = environment.MQTT_HOST_MICROSERVICES || "localhost:9092";
-export const PREFIX = environment.PREFIX || "hermes";
-export const CONSUME_EVENTS = environment.CONSUME_EVENTS === "true" || false;
-export const WORKERS_MAX_BYTES_PER_PARTITION = environment.WORKERS_MAX_BYTES_PER_PARTITION
-  ? Number(environment.WORKERS_MAX_BYTES_PER_PARTITION)
-  : undefined;
-export const commitIntervalSeconds = 3;
-export const CONSUMER_TOPIC_PREFIX = environment.CONSUMER_TOPIC_PREFIX || "apart-re";
+export const MQQT_PROVIDER = environment.MQQT_PROVIDER
+export const MQTT_HOST_MICROSERVICES = environment.MQTT_HOST_MICROSERVICES || 'localhost:9092'
+export const PREFIX = environment.PREFIX || 'hermes'
+export const CONSUME_EVENTS = environment.CONSUME_EVENTS === 'true' || false
+export const WORKERS_MAX_BYTES_PER_PARTITION = environment.WORKERS_MAX_BYTES_PER_PARTITION ? Number(environment.WORKERS_MAX_BYTES_PER_PARTITION) : undefined
+export const commitIntervalSeconds = 3
+export const CONSUMER_TOPIC_PREFIX = environment.CONSUMER_TOPIC_PREFIX || 'apart-re'
 
-const clientConfig = { host: MQTT_HOST_MICROSERVICES };
+const clientConfig = { host: MQTT_HOST_MICROSERVICES }
 
-export const CONSUMER_CONFIG = clientConfig;
+export const CONSUMER_CONFIG = clientConfig
 
-export const AuthProducer = "cerberus";
+export const AuthProducer = 'cerberus'
 
-export const Producers = [AuthProducer] as const;
+export const Producers = [AuthProducer] as const
 
 const Actions = {
-  CREATED: "added",
-  UPDATED: "updated",
-  DELETED: "deleted",
-  RECOVERY: "recovery",
-  INVITE: "invite",
-} as const;
+  CREATED: 'added',
+  UPDATED: 'updated',
+  DELETED: 'deleted',
+  RECOVERY: 'recovery',
+  INVITE: 'invite',
+} as const
 
 export const ComponentsByProducer = {
   [AuthProducer]: {
-    ACCOUNT: "account",
-    PROFILE: "profile",
-    ORGANIZATION: "organization",
-    ROLE: "role",
+    ACCOUNT: 'account',
+    PROFILE: 'profile',
+    ORGANIZATION: 'organization',
+    ROLE: 'role',
   },
-} as const;
+} as const
 
-const AuthComponents = ComponentsByProducer[AuthProducer];
+const AuthComponents = ComponentsByProducer[AuthProducer]
 
 export const TopicsByProducer = {
   [AuthProducer]: {
@@ -47,7 +45,7 @@ export const TopicsByProducer = {
     organization: `${AuthProducer}_${AuthComponents.ORGANIZATION}_topic`,
     role: `${AuthProducer}_${AuthComponents.ROLE}_topic`,
   },
-} as const;
+} as const
 
 export const EventsByProducer = {
   [AuthProducer]: {
@@ -75,4 +73,4 @@ export const EventsByProducer = {
       DeletedEvent: `${AuthProducer}_${AuthComponents.ROLE}_${Actions.DELETED}`,
     },
   },
-} as const;
+} as const

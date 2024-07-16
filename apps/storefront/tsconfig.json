@@ -1,10 +1,18 @@
 {
-  "exclude": [
-    "node_modules"
-  ],
-  "extends": "@apart-re/typescript-config/nextjs.json",
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "dist",
+    "types": [
+      "vitest/globals",
+      "bun-types",
+      "@apart-re/config-typescript"
+    ],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "incremental": true,
+    "jsx": "preserve",
     "plugins": [
       {
         "name": "next"
@@ -12,9 +20,10 @@
     ]
   },
   "include": [
-    "src",
-    "next.config.js",
-    "next-env.d.ts",
+    "src/**/*",
+    "./package.json",
+    "./tsup.config.ts",
+    "./vitest.config.ts",
     ".next/types/**/*.ts"
   ]
 }

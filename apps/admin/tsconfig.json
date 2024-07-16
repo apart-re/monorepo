@@ -1,14 +1,16 @@
 {
-  "exclude": [
-    "node_modules"
-  ],
-  "extends": "@apart-re/typescript-config/vite.json",
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "rootDir": ".",
-    "outDir": "dist"
+    "types": [
+      "vitest/globals",
+      "bun-types",
+      "@apart-re/config-typescript"
+    ]
   },
   "include": [
-    "src",
-    "vite.config.ts"
+    "src/**/*",
+    "./package.json",
+    "./tsup.config.ts",
+    "./vitest.config.ts"
   ]
 }
