@@ -35,7 +35,7 @@
     "typecheck": "turbo run typecheck",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "turbo build && changeset publish"
+    "release:packages": "turbo build --filter=./packages/* --filter=!./packages/configs && changeset publish"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.7",
