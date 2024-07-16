@@ -1,5 +1,13 @@
 # @apart-re/notify
 
+## 1.0.4
+
+### Patch Changes
+
+- cce7b2f: fix registry url
+- Updated dependencies [cce7b2f]
+  - @apart-re/commons@1.0.4
+
 ## 1.0.3
 
 ### Patch Changes
