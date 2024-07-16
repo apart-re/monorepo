@@ -1,0 +1,71 @@
+{
+  "name": "@apart-re/commons",
+  "version": "1.0.0",
+  "description": "Commons",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/apart-re/monorepo.git",
+    "directory": "packages/commons"
+  },
+  "license": "MIT",
+  "author": "Oswaldo Tedesco <oswaldo.tedesco@gmail.com>",
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json",
+    "./*": "./*"
+  },
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "src",
+    "dist"
+  ],
+  "private": true,
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint": "eslint src/",
+    "typecheck": "tsc --noEmit",
+    "test": "jest"
+  },
+  "jest": {
+    "preset": "@apart-re/jest-presets/node"
+  },
+  "packageManager": "pnpm@8.3.0",
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=8.3.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "devDependencies": {
+    "@apart-re/eslint-config": "workspace:*",
+    "@apart-re/jest-presets": "workspace:*",
+    "@apart-re/typescript-config": "workspace:*",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/bluebird": "^3.5.42",
+    "@types/jsonwebtoken": "^9.0.6",
+    "@types/lodash": "^4.17.6",
+    "@types/node": "^20.11.24",
+    "jest": "^29.7.0",
+    "tsup": "^8.0.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "bluebird": "^3.7.2",
+    "jsonwebtoken": "^9.0.1",
+    "lodash": "^4.17.21",
+    "objection": "^3.1.1",
+    "objection-db-errors": "^1.1.2"
+  }
+}

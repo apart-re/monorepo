@@ -1,12 +1,33 @@
 {
   "name": "@apart-re/server-utils",
   "version": "1.0.0",
-  "private": true,
-  "main": "./dist/index.js",
+  "description": "Server-utils",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/apart-re/monorepo.git",
+    "directory": "packages/server-utils"
+  },
+  "license": "MIT",
+  "author": "Oswaldo Tedesco <oswaldo.tedesco@gmail.com>",
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json",
+    "./*": "./*"
+  },
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist/**"
+    "src",
+    "dist"
   ],
+  "private": true,
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
@@ -15,12 +36,21 @@
     "test": "jest"
   },
   "jest": {
-    "preset": "@repo/jest-presets/node"
+    "preset": "@apart-re/jest-presets/node"
+  },
+  "packageManager": "pnpm@8.3.0",
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=8.3.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
-    "@repo/jest-presets": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
+    "@apart-re/eslint-config": "workspace:*",
+    "@apart-re/jest-presets": "workspace:*",
+    "@apart-re/typescript-config": "workspace:*",
     "@types/compression": "^1.7.5",
     "@types/cookie-parser": "^1.4.7",
     "@types/cors": "^2.8.17",

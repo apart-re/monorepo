@@ -3,3 +3,4 @@ packages:
   - "clients/*"
   - "apps/*"
   - "packages/*"
+  - "packages/configs/*"

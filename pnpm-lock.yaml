@@ -22,7 +22,7 @@ importers:
     dependencies:
       '@apart-re/ui':
         specifier: workspace:*
-        version: link:../../packages/apart-re-ui
+        version: link:../../packages/ui
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -30,12 +30,12 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
     devDependencies:
-      '@repo/eslint-config':
+      '@apart-re/eslint-config':
         specifier: workspace:*
-        version: link:../../packages/config-eslint
-      '@repo/typescript-config':
+        version: link:../../packages/configs/config-eslint
+      '@apart-re/typescript-config':
         specifier: workspace:*
-        version: link:../../packages/config-typescript
+        version: link:../../packages/configs/config-typescript
       '@types/react':
         specifier: ^18.2.62
         version: 18.2.62
@@ -67,15 +67,15 @@ importers:
         specifier: ^1.10.0
         version: 1.10.0
     devDependencies:
-      '@repo/eslint-config':
+      '@apart-re/eslint-config':
         specifier: workspace:*
-        version: link:../../packages/config-eslint
-      '@repo/jest-presets':
+        version: link:../../packages/configs/config-eslint
+      '@apart-re/jest-presets':
         specifier: workspace:*
-        version: link:../../packages/jest-presets
-      '@repo/typescript-config':
+        version: link:../../packages/configs/jest-presets
+      '@apart-re/typescript-config':
         specifier: workspace:*
-        version: link:../../packages/config-typescript
+        version: link:../../packages/configs/config-typescript
       '@types/body-parser':
         specifier: ^1.19.5
         version: 1.19.5
@@ -114,7 +114,7 @@ importers:
     dependencies:
       '@apart-re/ui':
         specifier: workspace:*
-        version: link:../../packages/apart-re-ui
+        version: link:../../packages/ui
       '@remix-run/node':
         specifier: ^2.9.2
         version: 2.9.2(typescript@5.3.3)
@@ -178,7 +178,7 @@ importers:
     dependencies:
       '@apart-re/ui':
         specifier: workspace:*
-        version: link:../../packages/apart-re-ui
+        version: link:../../packages/ui
       next:
         specifier: ^14.1.1
         version: 14.1.1(react-dom@18.2.0)(react@18.2.0)
@@ -189,15 +189,15 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
     devDependencies:
+      '@apart-re/eslint-config':
+        specifier: workspace:*
+        version: link:../../packages/configs/config-eslint
+      '@apart-re/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/configs/config-typescript
       '@next/eslint-plugin-next':
         specifier: ^14.1.1
         version: 14.1.1
-      '@repo/eslint-config':
-        specifier: workspace:*
-        version: link:../../packages/config-eslint
-      '@repo/typescript-config':
-        specifier: workspace:*
-        version: link:../../packages/config-typescript
       '@types/node':
         specifier: ^20.11.24
         version: 20.11.24
@@ -211,7 +211,7 @@ importers:
         specifier: ^5.3.3
         version: 5.3.3
 
-  packages/apart-re-cache:
+  packages/cache:
     dependencies:
       lodash:
         specifier: ^4.17.21
@@ -220,15 +220,15 @@ importers:
         specifier: ^4.6.15
         version: 4.6.15
     devDependencies:
-      '@repo/eslint-config':
+      '@apart-re/eslint-config':
         specifier: workspace:*
-        version: link:../config-eslint
-      '@repo/jest-presets':
+        version: link:../configs/config-eslint
+      '@apart-re/jest-presets':
         specifier: workspace:*
-        version: link:../jest-presets
-      '@repo/typescript-config':
+        version: link:../configs/jest-presets
+      '@apart-re/typescript-config':
         specifier: workspace:*
-        version: link:../config-typescript
+        version: link:../configs/config-typescript
       '@types/lodash':
         specifier: ^4.17.6
         version: 4.17.6
@@ -251,7 +251,7 @@ importers:
         specifier: ^3.13.1
         version: 3.13.1
 
-  packages/apart-re-commons:
+  packages/commons:
     dependencies:
       bcryptjs:
         specifier: ^2.4.3
@@ -272,15 +272,15 @@ importers:
         specifier: ^1.1.2
         version: 1.1.2(objection@3.1.1)
     devDependencies:
-      '@repo/eslint-config':
+      '@apart-re/eslint-config':
         specifier: workspace:*
-        version: link:../config-eslint
-      '@repo/jest-presets':
+        version: link:../configs/config-eslint
+      '@apart-re/jest-presets':
         specifier: workspace:*
-        version: link:../jest-presets
-      '@repo/typescript-config':
+        version: link:../configs/jest-presets
+      '@apart-re/typescript-config':
         specifier: workspace:*
-        version: link:../config-typescript
+        version: link:../configs/config-typescript
       '@types/bcryptjs':
         specifier: ^2.4.6
         version: 2.4.6
@@ -306,11 +306,41 @@ importers:
         specifier: ^5.3.3
         version: 5.3.3
 
-  packages/apart-re-notify:
+  packages/configs/config-eslint:
+    devDependencies:
+      '@vercel/style-guide':
+        specifier: ^5.2.0
+        version: 5.2.0(eslint@8.57.0)(prettier@3.2.5)(typescript@5.3.3)
+      eslint-config-turbo:
+        specifier: ^2.0.0
+        version: 2.0.0(eslint@8.57.0)
+      eslint-plugin-mdx:
+        specifier: ^3.1.5
+        version: 3.1.5(eslint@8.57.0)
+      eslint-plugin-only-warn:
+        specifier: ^1.1.0
+        version: 1.1.0
+      eslint-plugin-storybook:
+        specifier: ^0.8.0
+        version: 0.8.0(eslint@8.57.0)(typescript@5.3.3)
+
+  packages/configs/config-typescript: {}
+
+  packages/configs/jest-presets:
+    dependencies:
+      ts-jest:
+        specifier: ^29.1.2
+        version: 29.1.2(@babel/core@7.24.0)(jest@29.7.0)(typescript@5.3.3)
+    devDependencies:
+      jest-environment-jsdom:
+        specifier: ^29.7.0
+        version: 29.7.0
+
+  packages/notify:
     dependencies:
       '@apart-re/commons':
         specifier: workspace:^
-        version: link:../apart-re-commons
+        version: link:../commons
       '@azure/service-bus':
         specifier: ^7.9.5
         version: 7.9.5
@@ -330,15 +360,15 @@ importers:
         specifier: ^4.6.15
         version: 4.6.15
     devDependencies:
-      '@repo/eslint-config':
+      '@apart-re/eslint-config':
         specifier: workspace:*
-        version: link:../config-eslint
-      '@repo/jest-presets':
+        version: link:../configs/config-eslint
+      '@apart-re/jest-presets':
         specifier: workspace:*
-        version: link:../jest-presets
-      '@repo/typescript-config':
+        version: link:../configs/jest-presets
+      '@apart-re/typescript-config':
         specifier: workspace:*
-        version: link:../config-typescript
+        version: link:../configs/config-typescript
       '@types/lodash':
         specifier: ^4.17.6
         version: 4.17.6
@@ -355,7 +385,7 @@ importers:
         specifier: ^5.3.3
         version: 5.3.3
 
-  packages/apart-re-server-utils:
+  packages/server-utils:
     dependencies:
       app-root-path:
         specifier: ^3.1.0
@@ -394,15 +424,15 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0(winston@3.13.1)
     devDependencies:
-      '@repo/eslint-config':
+      '@apart-re/eslint-config':
         specifier: workspace:*
-        version: link:../config-eslint
-      '@repo/jest-presets':
+        version: link:../configs/config-eslint
+      '@apart-re/jest-presets':
         specifier: workspace:*
-        version: link:../jest-presets
-      '@repo/typescript-config':
+        version: link:../configs/jest-presets
+      '@apart-re/typescript-config':
         specifier: workspace:*
-        version: link:../config-typescript
+        version: link:../configs/config-typescript
       '@types/compression':
         specifier: ^1.7.5
         version: 1.7.5
@@ -440,17 +470,17 @@ importers:
         specifier: ^5.3.3
         version: 5.3.3
 
-  packages/apart-re-ui:
+  packages/ui:
     devDependencies:
-      '@repo/eslint-config':
+      '@apart-re/eslint-config':
         specifier: workspace:*
-        version: link:../config-eslint
-      '@repo/jest-presets':
+        version: link:../configs/config-eslint
+      '@apart-re/jest-presets':
         specifier: workspace:*
-        version: link:../jest-presets
-      '@repo/typescript-config':
+        version: link:../configs/jest-presets
+      '@apart-re/typescript-config':
         specifier: workspace:*
-        version: link:../config-typescript
+        version: link:../configs/config-typescript
       '@types/jest':
         specifier: ^29.5.12
         version: 29.5.12
@@ -479,41 +509,11 @@ importers:
         specifier: ^5.3.3
         version: 5.3.3
 
-  packages/config-eslint:
-    devDependencies:
-      '@vercel/style-guide':
-        specifier: ^5.2.0
-        version: 5.2.0(eslint@8.57.0)(prettier@3.2.5)(typescript@5.3.3)
-      eslint-config-turbo:
-        specifier: ^2.0.0
-        version: 2.0.0(eslint@8.57.0)
-      eslint-plugin-mdx:
-        specifier: ^3.1.5
-        version: 3.1.5(eslint@8.57.0)
-      eslint-plugin-only-warn:
-        specifier: ^1.1.0
-        version: 1.1.0
-      eslint-plugin-storybook:
-        specifier: ^0.8.0
-        version: 0.8.0(eslint@8.57.0)(typescript@5.3.3)
-
-  packages/config-typescript: {}
-
-  packages/jest-presets:
-    dependencies:
-      ts-jest:
-        specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.0)(jest@29.7.0)(typescript@5.3.3)
-    devDependencies:
-      jest-environment-jsdom:
-        specifier: ^29.7.0
-        version: 29.7.0
-
   services/notifications:
     dependencies:
       '@apart-re/notify':
         specifier: workspace:^
-        version: link:../../packages/apart-re-notify
+        version: link:../../packages/notify
       dotenv:
         specifier: ^16.4.5
         version: 16.4.5
@@ -524,15 +524,15 @@ importers:
         specifier: ^6.9.1
         version: 6.9.1
     devDependencies:
-      '@repo/eslint-config':
+      '@apart-re/eslint-config':
         specifier: workspace:*
-        version: link:../../packages/config-eslint
-      '@repo/jest-presets':
+        version: link:../../packages/configs/config-eslint
+      '@apart-re/jest-presets':
         specifier: workspace:*
-        version: link:../../packages/jest-presets
-      '@repo/typescript-config':
+        version: link:../../packages/configs/jest-presets
+      '@apart-re/typescript-config':
         specifier: workspace:*
-        version: link:../../packages/config-typescript
+        version: link:../../packages/configs/config-typescript
       '@types/jest':
         specifier: ^29.5.12
         version: 29.5.12
@@ -930,7 +930,7 @@ packages:
       '@babel/helper-module-imports': 7.22.15
       '@babel/helper-simple-access': 7.22.5
       '@babel/helper-split-export-declaration': 7.22.6
-      '@babel/helper-validator-identifier': 7.24.7
+      '@babel/helper-validator-identifier': 7.22.20
 
   /@babel/helper-optimise-call-expression@7.22.5:
     resolution: {integrity: sha512-HBwaojN0xFRx4yIvpwGqxiV2tUfl7401jlok564NgB9EHS1y6QT17FmKWm4ztqjeVdXLuC4fSvHc5ePpQjoTbw==}
@@ -3910,6 +3910,7 @@ packages:
 
   /abab@2.0.6:
     resolution: {integrity: sha512-j2afSsaIENvHZN2B8GOpF566vZ5WVk5opAiMTvWgaQT8DkbOqsTfvNAvHoRGU2zzP8cPoqys+xHTRDWW8L+/BA==}
+    deprecated: Use your platform's native atob() and btoa() methods instead
     dev: true
 
   /abbrev@2.0.0:
@@ -5133,6 +5134,7 @@ packages:
   /domexception@4.0.0:
     resolution: {integrity: sha512-A2is4PLG+eeSfoTMA95/s4pvAoSo2mKtiM5jlHkAVewmiO8ISFTFKZjH7UAM1Atli/OT/7JHOrJRJiMKUZKYBw==}
     engines: {node: '>=12'}
+    deprecated: Use your platform's native DOMException instead
     dependencies:
       webidl-conversions: 7.0.0
     dev: true
@@ -5462,6 +5464,7 @@ packages:
   /escodegen@2.1.0:
     resolution: {integrity: sha512-2NlIDTwUWJN0mRPQOdtQBzbUHvdGY2P1VXSyU83Q3xKxM7WHX2Ql8dKq782Q9TgQUNOLEzEYu9bzLNj1q88I5w==}
     engines: {node: '>=6.0'}
+    hasBin: true
     dependencies:
       esprima: 4.0.1
       estraverse: 5.3.0
@@ -5946,7 +5949,7 @@ packages:
     peerDependencies:
       eslint: '>=8.44.0'
     dependencies:
-      '@babel/helper-validator-identifier': 7.22.20
+      '@babel/helper-validator-identifier': 7.24.7
       '@eslint-community/eslint-utils': 4.4.0(eslint@8.57.0)
       ci-info: 3.9.0
       clean-regexp: 1.0.0
@@ -7063,11 +7066,13 @@ packages:
   /is-docker@2.2.1:
     resolution: {integrity: sha512-F+i2BKsFrH66iaUFc0woD8sLy8getkwTwtOBjvs56Cx4CgJDeKQeqfz8wAYiSb8JOprWhHH5p77PbmYCvvUuXQ==}
     engines: {node: '>=8'}
+    hasBin: true
     dev: true
 
   /is-docker@3.0.0:
     resolution: {integrity: sha512-eljcgEDlEns/7AXFosB5K/2nCM4P7FQPkGc/DWLy5rmFEWvZayGrik1d9/QIY5nJ4f9YsVvBkA6kJpHn9rISdQ==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    hasBin: true
     dev: true
 
   /is-empty@1.2.0:
@@ -7118,6 +7123,7 @@ packages:
   /is-inside-container@1.0.0:
     resolution: {integrity: sha512-KIYLCCJghfHZxqjYBE7rEy0OBuTd5xCHS7tHVgvCLkx7StIoaxwNW3hCALgEUjFfeRk+MG/Qxmp/vtETEF3tRA==}
     engines: {node: '>=14.16'}
+    hasBin: true
     dependencies:
       is-docker: 3.0.0
     dev: true
@@ -9182,6 +9188,7 @@ packages:
   /nopt@7.2.0:
     resolution: {integrity: sha512-CVDtwCdhYIvnAzFoJ6NJ6dX3oga9/HyciQDnG1vQDjSLMeKLJ4A93ZqYKDrgYSr1FBY5/hMYC+2VCi24pgpkGA==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
+    hasBin: true
     dependencies:
       abbrev: 2.0.0
     dev: true
@@ -10095,6 +10102,7 @@ packages:
 
   /regexp-tree@0.1.27:
     resolution: {integrity: sha512-iETxpjK6YoRWJG5o6hXLwvjYAoW+FEZn9os0PD/b6AP6xQwsa/Y7lCVgIixBbUPMfhu+i2LtdeAqVTgGlQarfA==}
+    hasBin: true
     dev: true
 
   /regexp.prototype.flags@1.5.1:
@@ -10113,6 +10121,7 @@ packages:
 
   /regjsparser@0.10.0:
     resolution: {integrity: sha512-qx+xQGZVsy55CH0a1hiVwHmqjLryfh7wQyF5HO07XJ9f7dQMY/gPQHhlyDkIzJKC+x2fUCpCcUODUUUFrm7SHA==}
+    hasBin: true
     dependencies:
       jsesc: 0.5.0
     dev: true
@@ -10527,6 +10536,7 @@ packages:
 
   /sort-package-json@2.6.0:
     resolution: {integrity: sha512-XSQ+lY9bAYA8ZsoChcEoPlgcSMaheziEp1beox1JVxy1SV4F2jSq9+h2rJ+3mC/Dhu9Ius1DLnInD5AWcsDXZw==}
+    hasBin: true
     dependencies:
       detect-indent: 7.0.1
       detect-newline: 4.0.1
@@ -11035,6 +11045,7 @@ packages:
 
   /tree-kill@1.2.2:
     resolution: {integrity: sha512-L0Orpi8qGpRG//Nd+H90vFB+3iHnue1zSSGmNOOCh1GLJ7rUKVwV2HvijphGQS2UmhUZewS9VgvxYIdgr+fG1A==}
+    hasBin: true
     dev: true
 
   /trim-lines@3.0.1:
@@ -11597,6 +11608,7 @@ packages:
   /uvu@0.5.6:
     resolution: {integrity: sha512-+g8ENReyr8YsOc6fv/NVJs2vFdHBnBNdfE49rshrTzDWOlUx4Gq7KOS2GD8eqhy2j+Ejq29+SbKH8yjkAqXqoA==}
     engines: {node: '>=8'}
+    hasBin: true
     dependencies:
       dequal: 2.0.3
       diff: 5.1.0

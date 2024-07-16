@@ -1,5 +1,5 @@
 {
-  "name": "@repo/eslint-config",
+  "name": "@apart-re/eslint-config",
   "license": "MIT",
   "version": "0.0.0",
   "private": true,
