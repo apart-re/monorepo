@@ -1,5 +1,13 @@
 # @apart-re/notify
 
+## 1.0.2
+
+### Patch Changes
+
+- a3e2739: release to ghr
+- Updated dependencies [a3e2739]
+  - @apart-re/commons@1.0.2
+
 ## 1.0.1
 
 ### Patch Changes
