@@ -1,5 +1,11 @@
 # @apart-re/server-utils
 
+## 1.1.1
+
+### Patch Changes
+
+- a3e2739: release to ghr
+
 ## 1.1.0
 
 ### Minor Changes
