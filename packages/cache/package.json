@@ -27,7 +27,7 @@
     "src",
     "dist"
   ],
-  "private": true,
+  "private": false,
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
