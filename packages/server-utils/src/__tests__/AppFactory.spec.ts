@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import _ from 'lodash'
+import { describe, expect,test, vi } from "vitest";
 
 import AppFactory from '../AppFactory'
 import type { ConfigOptions } from '../interfaces'
@@ -20,7 +21,7 @@ describe('AppFactory', () => {
       protected initializeErrorHandling(): void {}
     }
 
-    it('should initialize express middlewares with default options', () => {
+    test('should initialize express middlewares with default options', () => {
       const app = new MockAppFactory(defaultConfig)
       const infoSpy = vi.spyOn(mockLogger, 'info')
 
@@ -33,7 +34,7 @@ describe('AppFactory', () => {
 
       infoSpy.mockRestore()
     })
-    it('should initialize express middlewares with cors options', () => {
+    test('should initialize express middlewares with cors options', () => {
       const app = new MockAppFactory(defaultConfig)
       const infoSpy = vi.spyOn(mockLogger, 'info')
 
@@ -53,7 +54,7 @@ describe('AppFactory', () => {
       protected initializeErrorHandling(): void {}
     }
 
-    it.skip('should initialize routes corectly', () => {
+    test.skip('should initialize routes corectly', () => {
       const routes = [
         {
           version: 'v1',
@@ -87,7 +88,7 @@ describe('AppFactory', () => {
       protected initializeErrorHandling(): void {}
     }
 
-    it('should initialize connections', async () => {
+    test('should initialize connections', async () => {
       const app = new MockAppFactory(defaultConfig)
       const infoSpy = vi.spyOn(mockLogger, 'info')
       await app.initializeConnections(new Promise((resolve) => resolve()))
@@ -95,7 +96,7 @@ describe('AppFactory', () => {
       expect(infoSpy.mock.calls[0]?.[0]).toBe('Connections initialized')
     })
 
-    it('should throw', async () => {
+    test('should throw', async () => {
       const app = new MockAppFactory(defaultConfig)
       const errorSpy = vi.spyOn(mockLogger, 'error')
       const errorMessage = 'connections failed'
@@ -113,7 +114,7 @@ describe('AppFactory', () => {
       protected initializeErrorHandling(): void {}
     }
 
-    it('should initialize connections', () => {
+    test('should initialize connections', () => {
       const app = new MockAppFactory(defaultConfig)
       const listenSpy = vi.spyOn(app.getServer(), 'listen')
       app.listen()
