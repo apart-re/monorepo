@@ -1,14 +1,9 @@
 {
-  "exclude": [
-    "node_modules"
-  ],
-  "extends": "@apart-re/typescript-config/vite.json",
+  "exclude": ["node_modules"],
+  "extends": "@apart-re/config-typescript/vite.json",
   "compilerOptions": {
     "rootDir": ".",
     "outDir": "dist"
   },
-  "include": [
-    "src",
-    "vite.config.ts"
-  ]
+  "include": ["src", "vite.config.ts"]
 }

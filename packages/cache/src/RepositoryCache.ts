@@ -1,10 +1,10 @@
-import Cache, { Options as CacheOptions, Resolver } from "./cache";
-import { ArgsMapper, buildIdKey } from "./redis/keys";
+import Cache, { type Options as CacheOptions, type Resolver } from './cache'
+import { type ArgsMapper, buildIdKey } from './redis/keys'
 
-export type Options = CacheOptions;
+export type Options = CacheOptions
 
 function init(conf: Options) {
-  return Cache.init(conf);
+  return Cache.init(conf)
 }
 
 const cacheSimpleResponse = <Args extends object, Result>(
@@ -15,14 +15,7 @@ const cacheSimpleResponse = <Args extends object, Result>(
   fn: Resolver<Args, Result>,
   argsObject: Args,
   argsMapper?: ArgsMapper<Args>,
-) =>
-  Cache.remember(
-    buildIdKey(prefix, idColumns, argsObject, argsMapper),
-    expire,
-    cacheEnabled,
-    fn,
-    argsObject,
-  );
+) => Cache.remember(buildIdKey(prefix, idColumns, argsObject, argsMapper), expire, cacheEnabled, fn, argsObject)
 
 const invalidateCache = <Args extends object, Result>(
   idColumns: string | string[],
@@ -31,19 +24,13 @@ const invalidateCache = <Args extends object, Result>(
   fn: Resolver<Args, Result>,
   argsObject: Args,
   argsMapper?: ArgsMapper<Args>,
-) =>
-  Cache.forget(
-    buildIdKey(prefix, idColumns, argsObject, argsMapper),
-    cacheEnabled,
-    fn,
-    argsObject,
-  );
+) => Cache.forget(buildIdKey(prefix, idColumns, argsObject, argsMapper), cacheEnabled, fn, argsObject)
 
-const flush = Cache.flush;
+const flush = Cache.flush
 
 export default {
   init,
   cacheSimpleResponse,
   invalidateCache,
   flush,
-};
+}

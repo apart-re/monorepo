@@ -1,0 +1,102 @@
+name: Quality checks
+
+on:
+  pull_request:
+    types: [opened, edited]
+    branches:
+      - "*"
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: ${{ github.workspace }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Setup environment
+        uses: apart-re/monorepo/.github/actions/setup-environment@main
+        with:
+          os: ubuntu-latest
+      - name: Build
+        run: bun run build
+
+  typecheck:
+    name: Typecheck
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Setup environment
+        uses: apart-re/monorepo/.github/actions/setup-environment@main
+        with:
+          os: ubuntu-latest
+
+      - name: Typecheck
+        run: bun run typecheck --concurrency=1
+
+  tests:
+    name: Tests
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Setup environment
+        uses: apart-re/monorepo/.github/actions/setup-environment@main
+        with:
+          os: ubuntu-latest
+
+      - name: Test
+        run: bun run test
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+  linting:
+    name: Linting
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Setup environment
+        uses: apart-re/gh-action-templates/.github/actions/setup-environment@main
+        with:
+          os: ubuntu-latest
+
+      - name: Linting
+        env:
+          NODE_OPTIONS: "--max_old_space_size=4096"
+        continue-on-error: true
+        run: bun run lint:ci
+
+  notify:
+    name: Notify
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: apart-re/gh-action-templates/.github/actions/notify-status@main
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}

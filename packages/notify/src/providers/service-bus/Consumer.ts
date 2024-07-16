@@ -1,68 +1,57 @@
-import {
-  ServiceBusClient,
-  ServiceBusReceivedMessage,
-  ServiceBusReceiver,
-} from "@azure/service-bus";
+import type { ServiceBusClient, ServiceBusReceivedMessage, ServiceBusReceiver } from '@azure/service-bus'
 
-import { ConsumerConfig, Topic } from "../../interfaces/ConsumerConfig";
-import { getClientPerHost } from "./Connection";
+import type { ConsumerConfig, Topic } from '../../interfaces/ConsumerConfig'
+import { getClientPerHost } from './Connection'
 
 interface ConsumerPerTopicType {
-  [groupId: string]: ServiceBusReceiver;
+  [groupId: string]: ServiceBusReceiver
 }
 interface ConsumerPerHostAndTopicType {
-  [host: string]: ConsumerPerTopicType;
+  [host: string]: ConsumerPerTopicType
 }
-const ConsumerPerHostAndGroupId: ConsumerPerHostAndTopicType = {};
+const ConsumerPerHostAndGroupId: ConsumerPerHostAndTopicType = {}
 
-const getConsumer = (
-  client: ServiceBusClient,
-  host: ConsumerConfig["host"],
-  topic: Topic,
-  groupId: ConsumerConfig["groupId"],
-) => {
-  const ConsumerPerTopic: ConsumerPerTopicType =
-    ConsumerPerHostAndGroupId[host] || {};
-  let consumer = ConsumerPerTopic[topic.name];
+const getConsumer = (client: ServiceBusClient, host: ConsumerConfig['host'], topic: Topic, groupId: ConsumerConfig['groupId']) => {
+  const ConsumerPerTopic: ConsumerPerTopicType = ConsumerPerHostAndGroupId[host] || {}
+  let consumer = ConsumerPerTopic[topic.name]
 
   if (consumer) {
-    return consumer;
+    return consumer
   }
   consumer = client.createReceiver(topic.name, {
     identifier: groupId,
     skipParsingBodyAsJson: false,
-  });
-  ConsumerPerTopic[topic.name] = consumer;
-  ConsumerPerHostAndGroupId[host] = ConsumerPerTopic;
+  })
+  ConsumerPerTopic[topic.name] = consumer
+  ConsumerPerHostAndGroupId[host] = ConsumerPerTopic
 
-  return consumer;
-};
+  return consumer
+}
 
 class ServiceBusConsumer {
   static create(config: ConsumerConfig) {
-    const consumerInstance = new ServiceBusConsumer();
+    const consumerInstance = new ServiceBusConsumer()
 
-    consumerInstance.initialize(config);
+    consumerInstance.initialize(config)
 
-    return consumerInstance;
+    return consumerInstance
   }
 
   private initialize(config: ConsumerConfig) {
-    const { topics, host, groupId } = config;
+    const { topics, host, groupId } = config
 
-    const client = getClientPerHost(host);
+    const client = getClientPerHost(host)
     topics.forEach((topic: Topic) => {
-      const consumer = getConsumer(client, host, topic, groupId);
+      const consumer = getConsumer(client, host, topic, groupId)
 
-      if (typeof topic.handler !== "undefined") {
+      if (typeof topic.handler !== 'undefined') {
         consumer.subscribe({
-          processMessage: ({ messageId, body }: ServiceBusReceivedMessage) =>
-            topic.handler!(messageId, body),
+          processMessage: ({ messageId, body }: ServiceBusReceivedMessage) => topic.handler!(messageId, body),
           processError: config.handleError!,
-        });
+        })
       }
-    });
+    })
   }
 }
 
-export default ServiceBusConsumer;
+export default ServiceBusConsumer

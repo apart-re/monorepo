@@ -1,125 +1,125 @@
-import { Router } from "express";
-import _ from "lodash";
+import { Router } from 'express'
+import _ from 'lodash'
 
-import AppFactory from "../AppFactory";
-import { ConfigOptions } from "../interfaces";
+import AppFactory from '../AppFactory'
+import type { ConfigOptions } from '../interfaces'
 
 const mockLogger = {
   info: (message: string) => message,
   error: (message: string) => message,
-};
+}
 
 const defaultConfig = {
-  logger: mockLogger as unknown as ConfigOptions["logger"],
+  logger: mockLogger as unknown as ConfigOptions['logger'],
   routes: [],
-};
+}
 
-describe("AppFactory", () => {
-  describe("initializeExpressMiddlewares method", () => {
+describe('AppFactory', () => {
+  describe('initializeExpressMiddlewares method', () => {
     class MockAppFactory extends AppFactory {
       protected initializeErrorHandling(): void {}
     }
 
-    it("should initialize express middlewares with default options", () => {
-      const app = new MockAppFactory(defaultConfig);
-      const infoSpy = jest.spyOn(mockLogger, "info");
+    it('should initialize express middlewares with default options', () => {
+      const app = new MockAppFactory(defaultConfig)
+      const infoSpy = jest.spyOn(mockLogger, 'info')
 
       //@ts-expect-error
-      app.initializeExpressMiddlewares({});
+      app.initializeExpressMiddlewares({})
 
-      expect(infoSpy.mock.calls.length).toBe(2);
-      expect(infoSpy.mock.calls[0][0]).toBe("Loading default middlewares...");
-      expect(infoSpy.mock.calls[1][0]).toBe("Default middlewares loaded");
+      expect(infoSpy.mock.calls.length).toBe(2)
+      expect(infoSpy.mock.calls[0][0]).toBe('Loading default middlewares...')
+      expect(infoSpy.mock.calls[1][0]).toBe('Default middlewares loaded')
 
-      infoSpy.mockRestore();
-    });
-    it("should initialize express middlewares with cors options", () => {
-      const app = new MockAppFactory(defaultConfig);
-      const infoSpy = jest.spyOn(mockLogger, "info");
+      infoSpy.mockRestore()
+    })
+    it('should initialize express middlewares with cors options', () => {
+      const app = new MockAppFactory(defaultConfig)
+      const infoSpy = jest.spyOn(mockLogger, 'info')
 
       //@ts-expect-error
-      app.initializeExpressMiddlewares({ cors: { methods: "GET" } });
+      app.initializeExpressMiddlewares({ cors: { methods: 'GET' } })
 
-      expect(infoSpy.mock.calls.length).toBe(2);
-      expect(infoSpy.mock.calls[0][0]).toBe("Loading default middlewares...");
-      expect(infoSpy.mock.calls[1][0]).toBe("Default middlewares loaded");
+      expect(infoSpy.mock.calls.length).toBe(2)
+      expect(infoSpy.mock.calls[0][0]).toBe('Loading default middlewares...')
+      expect(infoSpy.mock.calls[1][0]).toBe('Default middlewares loaded')
 
-      infoSpy.mockRestore();
-    });
-  });
+      infoSpy.mockRestore()
+    })
+  })
 
-  describe("initializeRoutes method", () => {
+  describe('initializeRoutes method', () => {
     class MockAppFactory extends AppFactory {
       protected initializeErrorHandling(): void {}
     }
 
-    it.skip("should initialize routes corectly", () => {
+    it.skip('should initialize routes corectly', () => {
       const routes = [
         {
-          version: "v1",
-          routes: [{ path: "/foo", router: Router().post("/") }],
+          version: 'v1',
+          routes: [{ path: '/foo', router: Router().post('/') }],
         },
         {
-          version: "v2",
-          routes: [{ path: "/foo", router: Router().post("/") }],
+          version: 'v2',
+          routes: [{ path: '/foo', router: Router().post('/') }],
         },
         {
-          version: "admin",
-          routes: [{ path: "/foo", router: Router().post("/") }],
+          version: 'admin',
+          routes: [{ path: '/foo', router: Router().post('/') }],
         },
         {
-          version: "foo",
-          routes: [{ path: "/foo", router: Router().post("/") }],
+          version: 'foo',
+          routes: [{ path: '/foo', router: Router().post('/') }],
         },
-      ];
-      const infoSpy = jest.spyOn(mockLogger, "info");
-      const app = new MockAppFactory({ ...defaultConfig, routes });
+      ]
+      const infoSpy = jest.spyOn(mockLogger, 'info')
+      const app = new MockAppFactory({ ...defaultConfig, routes })
 
-      const routers = _.map(app.getServer()._router.stack ?? [], "name").filter((name) => name === "router");
-      expect(routers.length).toBe(routes.length);
-      expect(infoSpy.mock.calls[2][0]).toBe("Loading routes...");
-      expect(infoSpy.mock.calls[3][0]).toBe("Routes loaded");
-    });
-  });
+      const routers = _.map(app.getServer()._router.stack ?? [], 'name').filter((name) => name === 'router')
+      expect(routers.length).toBe(routes.length)
+      expect(infoSpy.mock.calls[2][0]).toBe('Loading routes...')
+      expect(infoSpy.mock.calls[3][0]).toBe('Routes loaded')
+    })
+  })
 
-  describe("initializeConections public method", () => {
+  describe('initializeConections public method', () => {
     class MockAppFactory extends AppFactory {
       protected initializeErrorHandling(): void {}
     }
 
-    it("should initialize connections", async () => {
-      const app = new MockAppFactory(defaultConfig);
-      const infoSpy = jest.spyOn(mockLogger, "info");
-      await app.initializeConnections(new Promise((resolve) => resolve()));
+    it('should initialize connections', async () => {
+      const app = new MockAppFactory(defaultConfig)
+      const infoSpy = jest.spyOn(mockLogger, 'info')
+      await app.initializeConnections(new Promise((resolve) => resolve()))
 
-      expect(infoSpy.mock.calls[0][0]).toBe("Connections initialized");
-    });
+      expect(infoSpy.mock.calls[0][0]).toBe('Connections initialized')
+    })
 
-    it("should throw", async () => {
-      const app = new MockAppFactory(defaultConfig);
-      const errorSpy = jest.spyOn(mockLogger, "error");
-      const errorMessage = "connections failed";
+    it('should throw', async () => {
+      const app = new MockAppFactory(defaultConfig)
+      const errorSpy = jest.spyOn(mockLogger, 'error')
+      const errorMessage = 'connections failed'
       try {
-        await app.initializeConnections(new Promise((_, reject) => reject(new Error(errorMessage))));
+        await app.initializeConnections(new Promise((_, reject) => reject(new Error(errorMessage))))
       } catch (err) {
-        expect((err as Error).message).toBe(errorMessage);
-        expect(errorSpy.mock.calls[0][0]).toBe("An Error has occurred during connection init");
+        expect((err as Error).message).toBe(errorMessage)
+        expect(errorSpy.mock.calls[0][0]).toBe('An Error has occurred during connection init')
       }
-    });
-  });
+    })
+  })
 
-  describe("listen public method", () => {
+  describe('listen public method', () => {
     class MockAppFactory extends AppFactory {
       protected initializeErrorHandling(): void {}
     }
 
-    it("should initialize connections", () => {
-      const app = new MockAppFactory(defaultConfig);
-      const listenSpy = jest.spyOn(app.getServer(), "listen");
-      app.listen();
+    it('should initialize connections', () => {
+      const app = new MockAppFactory(defaultConfig)
+      const listenSpy = jest.spyOn(app.getServer(), 'listen')
+      app.listen()
 
-      expect(listenSpy).toHaveBeenCalledTimes(1);
-      expect(listenSpy.mock.calls[0][0]).toBe(3000);
-    });
-  });
-});
+      expect(listenSpy).toHaveBeenCalledTimes(1)
+      expect(listenSpy.mock.calls[0][0]).toBe(3000)
+    })
+  })
+})

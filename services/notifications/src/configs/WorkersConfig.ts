@@ -1,25 +1,25 @@
-import type { ConsumerConfig } from "@apart-re/notify";
-import { Consumer } from "@apart-re/notify";
-import { config } from "dotenv";
-import _ from "lodash";
-import { AccountWorker, OrganizationWorker, ProfileWorker, RoleWorker } from "../components";
-import { APP_NAME } from "./AppConfig";
-import { CONSUMER_CONFIG, WORKERS_MAX_BYTES_PER_PARTITION, Producers, TopicsByProducer } from "./MQQTConfig";
+import type { ConsumerConfig } from '@apart-re/notify'
+import { Consumer } from '@apart-re/notify'
+import { config } from 'dotenv'
+import _ from 'lodash'
+import { AccountWorker, OrganizationWorker, ProfileWorker, RoleWorker } from '../components'
+import { APP_NAME } from './AppConfig'
+import { CONSUMER_CONFIG, WORKERS_MAX_BYTES_PER_PARTITION, Producers, TopicsByProducer } from './MQQTConfig'
 
-config({ path: `.env.${process.env.NODE_ENV || "development"}.local` });
-const environment = process.env;
+config({ path: `.env.${process.env.NODE_ENV || 'development'}.local` })
+const environment = process.env
 
-const ACCOUNT_HANDLER = "account-handler";
-const PROFILE_HANDLER = "profile-handler";
-const ORGANIZATION_HANDLER = "organization-handler";
-const ROLE_HANDLER = "role-handler";
+const ACCOUNT_HANDLER = 'account-handler'
+const PROFILE_HANDLER = 'profile-handler'
+const ORGANIZATION_HANDLER = 'organization-handler'
+const ROLE_HANDLER = 'role-handler'
 
 export const handlersByName = {
   [ACCOUNT_HANDLER]: AccountWorker.handler,
   [PROFILE_HANDLER]: ProfileWorker.handler,
   [ORGANIZATION_HANDLER]: OrganizationWorker.handler,
   [ROLE_HANDLER]: RoleWorker.handler,
-} as const;
+} as const
 
 // TODO: Every worker must handle one business vertical. i.e: "hermes-wrks-account" group should
 //       Be renamed to hermes-wrks-auth and it should handle all events related to Authentication and Authorization (cerberus service)
@@ -30,15 +30,15 @@ export const WorkersConfig: ConsumerConfig[] = Producers.map((producer) => {
     ...CONSUMER_CONFIG,
     groupId: `${APP_NAME}-workers-${producer}`,
     maxBytesPerPartition: WORKERS_MAX_BYTES_PER_PARTITION,
-    active: _.get(environment, `${producer.toUpperCase()}_WORKER_CONSUME_EVENTS`) === "true",
+    active: _.get(environment, `${producer.toUpperCase()}_WORKER_CONSUME_EVENTS`) === 'true',
     topics: Object.entries(TopicsByProducer[producer]).map(([component, topic]) => ({
       active: true,
       concurrency: 4,
       handlerName: `${component}-handler`,
       name: Consumer.internalTopicPrefix(topic),
     })),
-  };
-});
+  }
+})
 
 // export const WorkersConfig: ConsumerConfig[] = [
 //   {

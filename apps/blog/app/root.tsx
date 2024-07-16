@@ -1,12 +1,6 @@
-import {
-  Links,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-} from "@remix-run/react";
-import { Analytics } from "@vercel/analytics/react";
-import "./styles.css";
+import { Links, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react'
+import { Analytics } from '@vercel/analytics/react'
+import './styles.css'
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -24,9 +18,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Analytics />
       </body>
     </html>
-  );
+  )
 }
 
 export default function App() {
-  return <Outlet />;
+  return <Outlet />
 }

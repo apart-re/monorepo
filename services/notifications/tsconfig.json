@@ -1,15 +1,9 @@
 {
-  "extends": "@apart-re/typescript-config/base.json",
+  "extends": "@apart-re/config-typescriptg/base.json",
   "compilerOptions": {
-    "lib": [
-      "ES2015"
-    ],
+    "lib": ["ES2015"],
     "outDir": "./dist"
   },
-  "exclude": [
-    "node_modules"
-  ],
-  "include": [
-    "."
-  ]
+  "exclude": ["node_modules"],
+  "include": ["."]
 }

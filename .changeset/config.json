@@ -1,17 +1,16 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@3.0.2/schema.json",
-  "changelog": "@changesets/cli/changelog",
+  "changelog": [
+    "@changesets/changelog-github",
+    {
+      "repo": "apart-re/monorepo"
+    }
+  ],
   "commit": true,
   "fixed": [],
   "linked": [],
   "access": "restricted",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": [
-    "@apart-re/admin",
-    "@apart-re/api",
-    "@apart-re/blog",
-    "@apart-re/storefront",
-    "@apart-re/notifications"
-  ]
+  "ignore": ["@apart-re/admin", "@apart-re/api", "@apart-re/blog", "@apart-re/storefront", "@apart-re/notifications"]
 }

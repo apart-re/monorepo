@@ -10,10 +10,6 @@
   "license": "MIT",
   "author": "Oswaldo Tedesco <oswaldo.tedesco@gmail.com>",
   "type": "module",
-  "packageManager": "pnpm@8.15.6",
-  "engines": {
-    "node": ">=18"
-  },
   "workspaces": {
     "packages": [
       "apps/*",
@@ -27,19 +23,44 @@
   },
   "scripts": {
     "build": "turbo run build",
+    "changeset": "changeset",
     "clean": "turbo run clean",
     "dev": "turbo run dev",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "lint": "turbo run lint",
-    "test": "turbo run test",
-    "typecheck": "turbo run typecheck",
-    "changeset": "changeset",
+    "format": "bun biome format --write ./ && bun format:pack",
+    "format:pack": "npx sort-package-json package.json",
+    "graph": "npx nx graph ",
+    "install:csb": "corepack enable && pnpm install --frozen-lockfile",
+    "lint": "bun biome lint .",
+    "lint:case": "npx case-police --fix",
+    "lint:ci": "bun biome lint .",
+    "lint:fix": "bun biome lint --apply-unsafe . && bun run lint:case",
+    "lint:turbo": "turbo run lint",
+    "release:packages": "turbo build --filter=./packages/* && changeset publish",
+    "test": "vitest run --config ./configs/vitest.config.ts --coverage",
+    "test:bun": "bun test --preload ./configs/setup.ts",
+    "test:vitest": "vitest run --config ./configs/vitest.config.ts",
+    "test:watch": "vitest --config ./configs/vitest.config.ts",
+    "typecheck": "turbo run typecheck --continue --filter=./packages/* --filter=./apps/* --filter=./clients/* --filter=./services/*",
     "version-packages": "changeset version",
-    "release:packages": "turbo build --filter=./packages/* --filter=!./packages/configs && changeset publish"
+    "upgrade": "npx taze -r -w --exclude pnpm"
   },
   "devDependencies": {
+    "@apart-re/config-biome": "workspace:*",
+    "@apart-re/config-typescript": "workspace:*",
+    "@biomejs/biome": "^1.8.3",
+    "@changesets/changelog-github": "^0.5.0",
     "@changesets/cli": "^2.27.7",
-    "prettier": "^3.2.5",
-    "turbo": "^2.0.6"
+    "@types/node": "^20.14.10",
+    "@vitest/coverage-v8": "^1.6.0",
+    "@vitest/ui": "^1.6.0",
+    "bun-types": "^1.1.20",
+    "prettier": "^3.3.3",
+    "turbo": "^2.0.6",
+    "vite-tsconfig-paths": "^4.3.2",
+    "vitest": "^1.6.0"
+  },
+  "packageManager": "pnpm@8.15.6",
+  "engines": {
+    "node": ">=18"
   }
 }
