@@ -1,5 +1,11 @@
 # @apart-re/server-utils
 
+## 1.1.2
+
+### Patch Changes
+
+- f76ae0f: Change private to false on package.json
+
 ## 1.1.1
 
 ### Patch Changes
