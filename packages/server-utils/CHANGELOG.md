@@ -1,5 +1,11 @@
 # @apart-re/server-utils
 
+## 1.1.3
+
+### Patch Changes
+
+- cce7b2f: fix registry url
+
 ## 1.1.2
 
 ### Patch Changes

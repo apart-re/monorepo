@@ -1,5 +1,11 @@
 # @apart-re/ui
 
+## 1.0.4
+
+### Patch Changes
+
+- cce7b2f: fix registry url
+
 ## 1.0.3
 
 ### Patch Changes
