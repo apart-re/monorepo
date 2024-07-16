@@ -15,22 +15,21 @@ on:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
+  quality-checks:
+    uses: apart-re/monorepo/.github/workflows/quality-checks.yml@main
+    secrets: inherit
+
   release:
-    name: Release
+    name: Release Packages
+    needs: [quality-checks]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
-      - name: Setup pnpm 8
-        uses: pnpm/action-setup@v3
+      - name: Setup environment
+        uses: apart-re/monorepo/.github/actions/setup-environment@main
         with:
-          version: 8
-      - name: Setup Node.js 20.x
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20.x
-      - name: Install Dependencies
-        run: pnpm i
+          os: ubuntu-latest
       - name: Creating .npmrc
         run: |
           cat << EOF > "$HOME/.npmrc"

@@ -12,7 +12,7 @@ inputs:
   pnpm-version:
     description: PNPM version to be installed
     required: false
-    default: "8.6.10"
+    default: "8.15.6"
   os:
     description: Runner os
     required: false
@@ -27,7 +27,7 @@ runs:
         npm-version: "${{ inputs.npm-version }}"
 
     - name: Install PNPM
-      uses: pnpm/action-setup@v2.2.1
+      uses: pnpm/action-setup@v4
       with:
         version: "${{ inputs.pnpm-version }}"
 
@@ -48,11 +48,16 @@ runs:
 
     - name: Use the node_modules cache if available [pnpm]
       uses: actions/cache@v4
+      # with:
+      #   path: ~/.pnpm-store
+      #   key: ${{ inputs.os }}-node-${{ steps.versions.outputs.node_version }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+      #   restore-keys: |
+      #     ${{ inputs.os }}-node-${{ steps.versions.outputs.node_version }}-
       with:
-        path: ~/.pnpm-store
-        key: ${{ inputs.os }}-node-${{ steps.versions.outputs.node_version }}-${{ hashFiles('**/pnpm-lock.yaml') }}
-        restore-keys: |
-          ${{ inputs.os }}-node-${{ steps.versions.outputs.node_version }}-
+          key: ${{ runner.os }}-pnpm-${{ github.sha }}
+          restore-keys: |
+                ${{ runner.os }}-pnpm-
+          path: ~/.local/share/pnpm
 
     - name: Install dependencies
       shell: bash
