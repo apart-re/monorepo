@@ -1,5 +1,13 @@
 # @apart-re/notify
 
+## 1.0.3
+
+### Patch Changes
+
+- f76ae0f: Change private to false on package.json
+- Updated dependencies [f76ae0f]
+  - @apart-re/commons@1.0.3
+
 ## 1.0.2
 
 ### Patch Changes

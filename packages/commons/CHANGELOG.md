@@ -1,5 +1,11 @@
 # @apart-re/commons
 
+## 1.0.3
+
+### Patch Changes
+
+- f76ae0f: Change private to false on package.json
+
 ## 1.0.2
 
 ### Patch Changes
