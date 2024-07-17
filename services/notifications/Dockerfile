@@ -1,50 +1,38 @@
-FROM node:18-alpine AS base
-
-# The web Dockerfile is copy-pasted into our main docs at /docs/handbook/deploying-with-docker.
-# Make sure you update this Dockerfile, the Dockerfile in the web workspace and copy that over to Dockerfile in the docs.
-
-FROM base AS builder
-# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
-RUN apk update
+FROM node:18.16.1-alpine3.17 AS build-enviroment
 RUN apk add --no-cache libc6-compat
-# Set working directory
+RUN apk update
+ENV PNPM_HOME="/root/.local/share/pnpm"
+ENV PATH="${PATH}:${PNPM_HOME}"
+RUN npm install --global pnpm
+RUN pnpm i -g turbo
+
+FROM build-enviroment AS turbo-output
 WORKDIR /app
-RUN yarn global add turbo
 COPY . .
-RUN turbo prune notifications --docker
+RUN ls -l
+RUN turbo prune --scope=@apart-re/notifications --docker
 
-# Add lockfile and package.json's of isolated subworkspace
-FROM base AS installer
-RUN apk update
-RUN apk add --no-cache libc6-compat
+FROM build-enviroment as builder
 WORKDIR /app
-
-# First install dependencies (as they change less often)
-COPY .gitignore .gitignore
-COPY --from=builder /app/out/json/ .
-COPY --from=builder /app/out/yarn.lock ./yarn.lock
-RUN yarn install
-
-# Build the project and its dependencies
-COPY --from=builder /app/out/full/ .
+COPY --from=turbo-output /app/out/json/ .
+COPY --from=turbo-output /app/out/full/ .
+COPY --from=turbo-output /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
 COPY turbo.json turbo.json
+RUN pnpm install --ignore-scripts
+RUN pnpm run build --filter=@apart-re/notifications
+RUN pnpm run clean
 
-# Uncomment and use build args to enable remote caching
-# ARG TURBO_TEAM
-# ENV TURBO_TEAM=$TURBO_TEAM
-
-# ARG TURBO_TOKEN
-# ENV TURBO_TOKEN=$TURBO_TOKEN
-
-RUN yarn turbo build --filter=notifications...
-
-FROM base AS runner
+FROM build-enviroment as prod-installer
 WORKDIR /app
+COPY --from=builder /app .
+RUN pnpm install --filter=@apart-re/notifications --ignore-scripts --prod
 
-# Don't run production as root
-RUN addgroup --system --gid 1001 expressjs
-RUN adduser --system --uid 1001 expressjs
-USER expressjs
-COPY --from=installer /app .
+FROM build-enviroment as migration
+WORKDIR /app
+COPY --from=builder /app .
+CMD pnpm run migrate
 
-CMD node apps/api/dist/index.js
+FROM node:18.16.1-alpine3.17 as prod-server
+WORKDIR /app
+COPY --from=prod-installer /app .
+CMD node services/auth/dist/index.js

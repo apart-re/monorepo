@@ -1,16 +1,36 @@
+// {
+//   "extends": "../../tsconfig.json",
+//   "compilerOptions": {
+//     "types": [
+//       "vitest/globals",
+//       "bun-types",
+//       "@apart-re/config-typescript"
+//     ]
+//   },
+//   "include": [
+//     "src/**/*",
+//     "./package.json",
+//     "./tsup.config.ts",
+//     "./vitest.config.ts"
+//   ]
+// }
 {
-  "extends": "../../tsconfig.json",
+  "extends": "@apart-re/config-typescript/bundler.json",
   "compilerOptions": {
+    "baseUrl": ".",
     "types": [
       "vitest/globals",
       "bun-types",
       "@apart-re/config-typescript"
-    ]
+    ],
   },
   "include": [
-    "src/**/*",
     "./package.json",
     "./tsup.config.ts",
-    "./vitest.config.ts"
+    "./vitest.config.ts",
+    "./eslint.config.js"
+  ],
+  "exclude": [
+    "**/node_modules/**"
   ]
 }

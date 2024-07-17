@@ -14,7 +14,7 @@
     "packages": [
       "apps/*",
       "clients/*",
-      "services/*",
+      "services/**",
       "packages/*",
       "packages/configs/config-eslint/*",
       "packages/configs/config-typescript/*",
@@ -36,6 +36,7 @@
     "lint:fix": "bun biome lint --write --unsafe . && bun run lint:case",
     "lint:turbo": "turbo run lint",
     "release:packages": "turbo build --filter=./packages/* && changeset publish",
+    "release:docker": "turbo release:docker --filter=./services/*",
     "test:turbo": "turbo run test --filter=./packages/* --filter=./services/*",
     "test:bun": "bun test --preload ./configs/setup.ts",
     "test:vitest": "vitest run --config ./configs/vitest.config.ts",

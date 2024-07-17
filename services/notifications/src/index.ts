@@ -18,7 +18,7 @@ process.on('unhandledRejection', (reason) => {
 })
 
 process.on('uncaughtException', (error) => {
-  logger.error(`Uncaught Error ${error}`)
+  logger.error(`Uncaught Error ${JSON.stringify(error)}`)
   logger.error(error.stack)
 })
 
