@@ -1,8 +1,9 @@
 import cluster from 'node:cluster'
-import log4js from 'log4js'
+import type { Logger } from 'log4js';
+import log4js, { getLogger as log4jsGetLoger, configure } from 'log4js'
 import { LOG_LEVEL } from '../configs/app-config'
 
-log4js.configure({
+configure({
   appenders: {
     console: { type: 'console', layout: { type: 'colored' } },
   },
@@ -14,11 +15,11 @@ log4js.configure({
 export type LogLevels = 'trace' | 'debug' | 'info' | 'warn' | 'error' | 'fatal'
 export const LOG_LEVELS = ['trace', 'debug', 'info', 'warn', 'error', 'fatal']
 
-export const getLogger = (loggerName: string): Record<string, (logs: any) => void> | log4js.Logger => {
-  if (cluster.isPrimary) return log4js.getLogger(loggerName)
+export const getLogger = (loggerName: string): Record<string, (logs: unknown) => void> | Logger => {
+  if (cluster.isPrimary) return log4jsGetLoger(loggerName)
 
   return LOG_LEVELS.reduce((logger, logLevel) => {
-    const log = (...logs: any) => {
+    const log = (...logs: unknown[]) => {
       cluster.worker?.send({
         cmd: 'log',
         logLevel,
