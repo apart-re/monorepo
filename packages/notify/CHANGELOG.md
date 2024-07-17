@@ -1,5 +1,14 @@
 # @apart-re/notify
 
+## 1.0.8
+
+### Patch Changes
+
+- [#17](https://github.com/apart-re/monorepo/pull/17) [`d8f7e8a`](https://github.com/apart-re/monorepo/commit/d8f7e8a9e94999a7eb2afc0149d06ac3f2d27b33) Thanks [@otedesco](https://github.com/otedesco)! - test ci
+
+- Updated dependencies [[`d8f7e8a`](https://github.com/apart-re/monorepo/commit/d8f7e8a9e94999a7eb2afc0149d06ac3f2d27b33)]:
+  - @apart-re/commons@1.0.8
+
 ## 1.0.7
 
 ### Patch Changes
