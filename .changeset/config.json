@@ -9,8 +9,17 @@
   "commit": true,
   "fixed": [],
   "linked": [],
-  "access": "restricted",
+  "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["@apart-re/admin", "@apart-re/api", "@apart-re/blog", "@apart-re/storefront", "@apart-re/notifications"]
+  "privatePackages": {
+    "version": true,
+    "tag": true
+  },
+  "ignore": [
+    "@apart-re/admin",
+    "@apart-re/api",
+    "@apart-re/blog",
+    "@apart-re/storefront"
+  ]
 }

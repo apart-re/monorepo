@@ -1,12 +1,5 @@
 {
-  "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "types": [
-      "vitest/globals",
-      "bun-types",
-      "../configs/config-typescript/reset.d.ts",
-    ]
-  },
+  "extends": "@apart-re/config-typescript/bundler.json",
   "include": [
     "src/**/*",
     "./package.json",

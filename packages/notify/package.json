@@ -30,7 +30,7 @@
   "private": false,
   "scripts": {
     "build": "tsup",
-    "clean": "npx rimraf ./dist",
+    "clean": "rm -rf ./dist",
     "lint": "bun biome lint .",
     "lint:fix": "bun biome lint --apply-unsafe .",
     "release": "pnpm publish --no-git-check",
