@@ -3,14 +3,20 @@ name: Release Packages
 on:
   workflow_dispatch:
     inputs:
-      tag:
-        description: override release tag
-        required: false
+      BRANCH:
+        description: 'Branch to use'
+        required: true
+        default: 'main'
+        type: choice
+        options:
+          - main
+          - alpha
+          - beta
+          - rc
   push:
     branches: ["main", "alpha", "beta", "rc"]
     paths:
       - ".changeset/**"
-      - "packages/**"
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -46,3 +52,29 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  release-services:
+    name: Release Docker images
+    needs: [quality-checks]
+    runs-on: ubuntu-latest
+    if: ${{github.event_name == 'workflow_dispatch'}}
+    strategy:
+      matrix:
+        include:
+          - image: ghcr.io/${{github.repository_owner}}/notifications
+            dockerfile: service/notifications
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ matrix.image }}
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
