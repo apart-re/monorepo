@@ -6,7 +6,12 @@
       "vitest/globals",
       "bun-types",
       "@apart-re/config-typescript"
-    ]
+    ],
+    "paths": {
+      "@stijnvanhulle/template-core": [
+        "packages/core/src/index.ts"
+      ]
+    }
   },
   "include": [
     "./package.json",

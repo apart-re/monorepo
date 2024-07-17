@@ -3,7 +3,7 @@ name: Quality checks
 on:
   workflow_call:
   push:
-    branches: ["main", "alpha", "beta", "rc"]
+    branches: ["main", "stage", "develop"]
   pull_request:
     types: [opened, edited]
     branches:

@@ -1,40 +1,63 @@
 name: Release Packages
 
 on:
-  workflow_run:
-    workflows: ["Quality checks"]
-    branches: ["main", "alpha", "beta", "rc"]
-    types: 
-      - completed
-  workflow_dispatch:
-    inputs:
-      BRANCH:
-        description: 'Branch to use'
-        required: true
-        default: 'main'
-        type: choice
-        options:
-          - main
-          - alpha
-          - beta
-          - rc
+  # workflow_run:
+  #   workflows: ["Quality checks"]
+  #   branches: ["staging", "develop"]
+  #   types: 
+  #     - completed
+  # workflow_dispatch:
+  #   inputs:
+  #     BRANCH:
+  #       description: 'Branch to use'
+  #       required: true
+  #       default: 'main'
+  #       type: choice
+  #       options:
+  #         - main
+  #         - staging
+  #         - develop
   push:
-    branches: ["main", "alpha", "beta", "rc"]
+    branches: ["main"]
     paths:
-      - ".changeset/**"
       - "packages/**"
+      - "services/**"
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  quality-checks:
-    if: github.event_name == 'workflow_dispatch'
-    uses: apart-re/monorepo/.github/workflows/quality-checks.yml@main
-    secrets: inherit
-
+  # pre-release:
+  #   if: ${{github.event_name == 'push' && contains(fromJson('["alpha", "beta", "rc"]'), github.ref_name)}}
+  #   name: Pre relese packages
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout Repo
+  #       uses: actions/checkout@v4
+  #     - name: Setup environment
+  #       uses: apart-re/monorepo/.github/actions/setup-environment@main
+  #       with:
+  #         os: ubuntu-latest
+  #     - name: Creating .npmrc
+  #       run: |
+  #         cat << EOF > "$HOME/.npmrc"
+  #           //npm.pkg.github.com/:_authToken=$NPM_TOKEN
+  #         EOF
+  #       env:
+  #         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  #     - name: Create Release Pull Request or Publish to NPM
+  #       id: changesets
+  #       uses: changesets/action@v1
+  #       with:
+  #         version: yarn changeset pre enter ${{github.ref_name}} && yarn changeset version
+  #         publish: pnpm release:packages
+  #         commit: "Enter prerelease mode and version packages"
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  #         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+  
   release-packages:
     name: Release Packages
-    needs: [quality-checks]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
