@@ -1,5 +1,19 @@
 # @apart-re/notifications
 
+## 0.0.4
+
+### Patch Changes
+
+- [#24](https://github.com/apart-re/monorepo/pull/24) [`8d26823`](https://github.com/apart-re/monorepo/commit/8d2682314db75994c55bebe4055b1be70235dc47) Thanks [@otedesco](https://github.com/otedesco)! - fix looger eslint warnings
+
+- [#24](https://github.com/apart-re/monorepo/pull/24) [`7bdf51a`](https://github.com/apart-re/monorepo/commit/7bdf51a172c99d9d5634d58013c4d846eabecb8e) Thanks [@otedesco](https://github.com/otedesco)! - Rename logger file
+
+- [#24](https://github.com/apart-re/monorepo/pull/24) [`743f0da`](https://github.com/apart-re/monorepo/commit/743f0dad2b19b9fe948625c25e06df97ac9af85e) Thanks [@otedesco](https://github.com/otedesco)! - Fix utils/logger.ts file name
+
+- [#24](https://github.com/apart-re/monorepo/pull/24) [`dff3548`](https://github.com/apart-re/monorepo/commit/dff354861524fd32596845b4c9a1d310131b730c) Thanks [@otedesco](https://github.com/otedesco)! - fix eslint warnings
+
+- [#24](https://github.com/apart-re/monorepo/pull/24) [`10d0067`](https://github.com/apart-re/monorepo/commit/10d0067712a6ba4f36ab7dc4f8b9f95f38d1af2f) Thanks [@otedesco](https://github.com/otedesco)! - test ci
+
 ## 0.0.3
 
 ### Patch Changes
