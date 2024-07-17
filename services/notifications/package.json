@@ -1,6 +1,6 @@
 {
   "name": "@apart-re/notifications",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Notifications Workers",
   "repository": {
     "type": "git",
