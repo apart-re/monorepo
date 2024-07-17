@@ -1,2 +1,2 @@
-export * from './Logger'
-export { default as TerminationHandler } from './TerminationHandler'
+export * from './logger'
+export { default as TerminationHandler } from './termination-handler'
