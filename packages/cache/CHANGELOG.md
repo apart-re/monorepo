@@ -1,5 +1,11 @@
 # @apart-re/cache
 
+## 1.0.7
+
+### Patch Changes
+
+- [#15](https://github.com/apart-re/monorepo/pull/15) [`6120980`](https://github.com/apart-re/monorepo/commit/6120980e74c81621392851a82b9a0d2d0de864a0) Thanks [@otedesco](https://github.com/otedesco)! - fix build and release docker images
+
 ## 1.0.6
 
 ### Patch Changes
