@@ -1,7 +1,24 @@
 {
   "name": "@apart-re/notifications",
   "version": "0.0.0",
-  "private": true,
+  "description": "Notifications Workers",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/apart-re/monorepo.git",
+    "directory": "services/notifications"
+  },
+  "license": "MIT",
+  "author": "Oswaldo Tedesco <oswaldo.tedesco@gmail.com>",
+  "private": false,
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "packageManager": "pnpm@8.3.0",
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=8.3.0"
+  },
   "scripts": {
     "start": "node dist/index.js",
     "dev": "tsup --watch --onSuccess \"node dist/index.js\"",
@@ -9,7 +26,9 @@
     "clean": "rm -rf dist",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src/",
-    "test": "vitest --passWithNoTests"
+    "test": "vitest --passWithNoTests",
+    "build:image": "docker image build -t @apart-re/notifications:$(node -p \"require('./package.json').version\") .",
+    "release": "echo foo"
   },
   "jest": {
     "preset": "@apart-re/jest-presets/node"
