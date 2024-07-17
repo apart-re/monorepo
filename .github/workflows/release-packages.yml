@@ -1,6 +1,11 @@
 name: Release Packages
 
 on:
+  workflow_run:
+    workflows: ["Quality checks"]
+    branches: ["main", "alpha", "beta", "rc"]
+    types: 
+      - completed
   workflow_dispatch:
     inputs:
       BRANCH:
@@ -17,11 +22,13 @@ on:
     branches: ["main", "alpha", "beta", "rc"]
     paths:
       - ".changeset/**"
+      - "packages/**"
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   quality-checks:
+    if: github.event_name != 'workflow_run'
     uses: apart-re/monorepo/.github/workflows/quality-checks.yml@main
     secrets: inherit
 
@@ -52,29 +59,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-  release-services:
-    name: Release Docker images
-    needs: [quality-checks]
-    runs-on: ubuntu-latest
-    if: ${{github.event_name == 'workflow_dispatch'}}
-    strategy:
-      matrix:
-        include:
-          - image: ghcr.io/${{github.repository_owner}}/notifications
-            dockerfile: service/notifications
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v4
-      - name: Docker meta
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: ${{ matrix.image }}
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+      
 

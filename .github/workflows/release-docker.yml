@@ -1,0 +1,87 @@
+name: Release Docker Images
+
+on:
+  workflow_run:
+    workflows: ["Quality checks"]
+    branches: ["main", "alpha", "beta", "rc"]
+    types: 
+      - completed
+  workflow_dispatch:
+    inputs:
+      BRANCH:
+        description: 'Branch to use'
+        required: true
+        default: 'main'
+        type: choice
+        options:
+          - main
+          - alpha
+          - beta
+          - rc
+  push:
+    branches: ["main", "alpha", "beta", "rc"]
+    tags: 
+        - '@apart-re/notifications@*'
+    paths:
+      - ".changeset/**"
+      - "services/**"
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  quality-checks:
+    if: github.event_name != 'workflow_run'
+    uses: apart-re/monorepo/.github/workflows/quality-checks.yml@main
+    secrets: inherit
+
+  changeset:
+    name: Create Release Pull Request
+    needs: [quality-checks]
+    runs-on: ubuntu-latest
+    if: github.event_name != 'workflow_dispatch'
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Setup environment
+        uses: apart-re/monorepo/.github/actions/setup-environment@main
+        with:
+          os: ubuntu-latest
+      - name: Create Release Pull Request
+        id: changesets
+        uses: changesets/action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  release-services:
+    name: Release Docker images
+    needs: [quality-checks]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch'
+    strategy:
+      matrix:
+        include:
+          - image: ghcr.io/${{github.repository_owner}}/notifications
+            dockerfile: services/notifications/Dockerfile
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ matrix.image }}
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GH_TOKEN }}
+      - name: Build and push Docker images
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: ${{ matrix.dockerfile }}
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
