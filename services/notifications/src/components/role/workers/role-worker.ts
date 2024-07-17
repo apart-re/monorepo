@@ -1,4 +1,4 @@
-import { AuthProducer, EventsByProducer } from '../../../configs/MQQTConfig'
+import { AuthProducer, EventsByProducer } from '../../../configs/mqqt-config'
 import { getLogger } from '../../../utils'
 
 const logger = getLogger('RoleWorker')

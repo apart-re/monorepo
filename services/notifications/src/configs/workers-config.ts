@@ -3,8 +3,8 @@ import { Consumer } from '@apart-re/notify'
 import { config } from 'dotenv'
 import _ from 'lodash'
 import { AccountWorker, OrganizationWorker, ProfileWorker, RoleWorker } from '../components'
-import { APP_NAME } from './AppConfig'
-import { CONSUMER_CONFIG, WORKERS_MAX_BYTES_PER_PARTITION, Producers, TopicsByProducer } from './MQQTConfig'
+import { APP_NAME } from './app-config'
+import { CONSUMER_CONFIG, WORKERS_MAX_BYTES_PER_PARTITION, Producers, TopicsByProducer } from './mqqt-config'
 
 config({ path: `.env.${process.env.NODE_ENV || 'development'}.local` })
 const environment = process.env

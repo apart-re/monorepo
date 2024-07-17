@@ -1,4 +1,4 @@
-import { EventsByProducer, AuthProducer } from '../../../configs/MQQTConfig'
+import { EventsByProducer, AuthProducer } from '../../../configs/mqqt-config'
 import { getLogger } from '../../../utils'
 import { createHandler, deleteHandler, recoveryHandler, updateHandler, inviteHandler } from '../services/AccountService'
 
