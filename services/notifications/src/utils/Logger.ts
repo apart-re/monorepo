@@ -1,6 +1,6 @@
 import cluster from 'node:cluster'
 import log4js from 'log4js'
-import { LOG_LEVEL } from '../configs/AppConfig'
+import { LOG_LEVEL } from '../configs/app-config'
 
 log4js.configure({
   appenders: {

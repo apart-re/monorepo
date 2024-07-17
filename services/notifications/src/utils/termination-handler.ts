@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { getLogger } from './Logger'
+import { getLogger } from './logger'
 
 const REGISTER_TERMINATION_EVENT_LISTENERS = true // import from app config
 const logger = getLogger('Termination Handler')
