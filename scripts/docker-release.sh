@@ -17,7 +17,7 @@ OWNER='apart-re'
 VERSION=$(node -p "require('./package.json').version")
 IMAGE_NAME=$(node -p "require('./package.json').name.replace('@', '')")
 
-DOCKER_BUILDKIT=0 docker build -f $PWD/Dockerfile -t $REGISTRY/$IMAGE_NAME:latest -t $REGISTRY/$IMAGE_NAME:$VERSION --target prod-server $BUILD_CONTEXT
+docker build -f $PWD/Dockerfile -t $REGISTRY/$IMAGE_NAME:latest -t $REGISTRY/$IMAGE_NAME:$VERSION --target prod-server $BUILD_CONTEXT
 
 echo $GITHUB_TOKEN | docker login $REGISTRY -u $OWNER --password-stdin
 

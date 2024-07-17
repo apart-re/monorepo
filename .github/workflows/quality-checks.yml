@@ -95,13 +95,3 @@ jobs:
           NODE_OPTIONS: "--max_old_space_size=4096"
         continue-on-error: true
         run: bun run lint:ci
-
-  notify:
-    name: Notify
-    needs: [typecheck, tests, linting]
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: apart-re/gh-action-templates/.github/actions/notify-status@main
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}

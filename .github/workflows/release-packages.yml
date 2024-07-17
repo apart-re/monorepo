@@ -19,7 +19,7 @@ jobs:
     uses: apart-re/monorepo/.github/workflows/quality-checks.yml@main
     secrets: inherit
 
-  release:
+  release-packages:
     name: Release Packages
     needs: [quality-checks]
     runs-on: ubuntu-latest
