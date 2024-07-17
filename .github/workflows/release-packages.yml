@@ -28,7 +28,7 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   quality-checks:
-    if: github.event_name != 'workflow_run'
+    if: github.event_name == 'workflow_dispatch'
     uses: apart-re/monorepo/.github/workflows/quality-checks.yml@main
     secrets: inherit
 
