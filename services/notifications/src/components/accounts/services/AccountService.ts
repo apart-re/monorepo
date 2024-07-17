@@ -1,7 +1,7 @@
 import { getLogger } from '../../../utils'
 import changePasswordTemplate from '../templates/ChangePasswordTemplate'
 import verifyEmailTemplate from '../templates/VerifyEmailTemplate'
-import type { AccountEvents } from '../workers/AccountWorker'
+import type { AccountEvents } from '../workers/account-worker'
 
 const logger = getLogger('AccountService')
 
