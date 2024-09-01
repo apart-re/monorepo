@@ -1,5 +1,5 @@
 import cluster from 'node:cluster'
-import type { Logger } from 'log4js';
+import type { Logger } from 'log4js'
 import { getLogger as log4jsGetLoger, configure } from 'log4js'
 import { LOG_LEVEL } from '../configs/app-config'
 
@@ -31,4 +31,3 @@ export const getLogger = (loggerName: string): Record<string, (logs: unknown) =>
     return { ...logger, [logLevel]: log }
   }, {})
 }
-

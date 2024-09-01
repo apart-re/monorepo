@@ -16,10 +16,5 @@
     "version": true,
     "tag": true
   },
-  "ignore": [
-    "@apart-re/admin",
-    "@apart-re/api",
-    "@apart-re/blog",
-    "@apart-re/storefront"
-  ]
+  "ignore": ["@apart-re/admin", "@apart-re/api", "@apart-re/blog", "@apart-re/storefront"]
 }
