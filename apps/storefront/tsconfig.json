@@ -1,16 +1,8 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "types": [
-      "vitest/globals",
-      "bun-types",
-      "@apart-re/config-typescript"
-    ],
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "types": ["vitest/globals", "bun-types", "@apart-re/config-typescript"],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "incremental": true,
     "jsx": "preserve",
     "plugins": [
@@ -19,11 +11,5 @@
       }
     ]
   },
-  "include": [
-    "src/**/*",
-    "./package.json",
-    "./tsup.config.ts",
-    "./vitest.config.ts",
-    ".next/types/**/*.ts"
-  ]
+  "include": ["src/**/*", "./package.json", "./tsup.config.ts", "./vitest.config.ts", ".next/types/**/*.ts"]
 }

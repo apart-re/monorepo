@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import _ from 'lodash'
-import { describe, expect,test, vi } from "vitest";
+import { describe, expect, test, vi } from 'vitest'
 
 import AppFactory from '../AppFactory'
 import type { ConfigOptions } from '../interfaces'

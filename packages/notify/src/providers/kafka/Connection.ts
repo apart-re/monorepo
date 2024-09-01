@@ -1,4 +1,4 @@
-import { type ISocketFactoryArgs, Kafka, type KafkaConfig, logLevel as loggingLevel } from 'kafkajs'
+import { type ISocketFactoryArgs, Kafka, type KafkaConfig, logLevel as loggingLevel, type Mechanism, type SASLOptions } from 'kafkajs'
 import net from 'node:net'
 import tls from 'node:tls'
 
@@ -9,6 +9,9 @@ import {
   KAFKA_CLIENT_MAX_RECONNECTION_ATTEMPTS,
   KAFKA_CLIENT_MAX_TIMEOUT,
   KAFKA_CLIENT_SSL,
+  KAFKA_CLIENT_SASL_MECHANISM,
+  KAFKA_CLIENT_SASL_USERNAME,
+  KAFKA_CLIENT_SASL_PASSWORD,
 } from '../../config'
 
 const KEEP_ALIVE_DELAY = 10000
@@ -39,7 +42,8 @@ export interface KafkaClientConfig {
   maxAttempts?: number
   enableLogs?: boolean
   logLevel?: loggingLevel
-  ssl?: boolean
+  ssl?: boolean | tls.ConnectionOptions
+  sasl?: SASLOptions | Mechanism
   clientId?: string
 }
 
@@ -49,11 +53,15 @@ const getConfig = (): KafkaClientConfig => ({
   maxAttempts: KAFKA_CLIENT_MAX_RECONNECTION_ATTEMPTS,
   enableLogs: KAFKA_CLIENT_ENABLE_LOGS,
   ssl: KAFKA_CLIENT_SSL,
+  sasl: KAFKA_CLIENT_SASL_PASSWORD
+    ? //@ts-ignore
+      { mechanism: KAFKA_CLIENT_SASL_MECHANISM!, username: KAFKA_CLIENT_SASL_USERNAME, password: KAFKA_CLIENT_SASL_PASSWORD }
+    : undefined,
   clientId: KAFKA_CLIENT_ID,
 })
 
 export function getClientPerHost({ host }: KafkaClientConfig) {
-  const { timeout, maxAttempts, enableLogs, logLevel = enableLogs ? loggingLevel.INFO : loggingLevel.ERROR, ssl, clientId } = getConfig()
+  const { timeout, maxAttempts, enableLogs, logLevel = enableLogs ? loggingLevel.INFO : loggingLevel.ERROR, ssl, sasl, clientId } = getConfig()
 
   if (!host) {
     host = getConfig().host
@@ -69,6 +77,7 @@ export function getClientPerHost({ host }: KafkaClientConfig) {
     brokers: host ? host.split(',') : [],
     connectionTimeout: timeout,
     ssl,
+    sasl,
     retry: {
       maxRetryTime: 35 * 60 * 1000,
       initialRetryTime: 300,

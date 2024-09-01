@@ -3,10 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
-  "files": [
-    "browser/jest-preset.js",
-    "node/jest-preset.js"
-  ],
+  "files": ["browser/jest-preset.js", "node/jest-preset.js"],
   "dependencies": {
     "ts-jest": "^29.2.2"
   },
